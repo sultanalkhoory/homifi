@@ -25,7 +25,7 @@ export default function Home() {
   animate={{ opacity: 1 }}
   transition={{ duration: 3, ease: "easeInOut", delay: 1 }}
   style={{
-    backgroundImage: `url('/lit-room.jpg')`, // Your lit room image
+    backgroundImage: `url('/lit-room.png')`, // Your lit room image
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat'
