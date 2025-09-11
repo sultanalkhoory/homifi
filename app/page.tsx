@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useAnimation, useMotionValue, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
     if (dashboardInView && !lightsOn) {
       const timer = setTimeout(() => {
         setLightsOn(true)
-        backgroundOpacity.set(1) // Trigger background transition
+        backgroundOpacity.set(1)
       }, 1000)
       return () => clearTimeout(timer)
     }
@@ -31,28 +31,32 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white">
-      {/* Dark room */}
-<div 
-  className="absolute inset-0"
-  style={{
-    backgroundImage: `url('/room-dark.webp')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat'
-  }}
-/>
-
-{/* Lit room */}
-<motion.div 
-  className="absolute inset-0"
-  style={{
-    backgroundImage: `url('/room-lit.webp')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-    opacity: litOpacity
-  }}
-/>
+      {/* Hero Section with Dark Room Background */}
+      <section className="min-h-screen relative overflow-hidden">
+        {/* Background Images - Crossfade Effect */}
+        <div className="absolute inset-0 z-0">
+          {/* Dark room - always visible */}
+          <div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url('/room-dark.webp')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
+          />
+          
+          {/* Lit room - fades in when lights turn on */}
+          <motion.div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url('/room-lit.webp')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              opacity: litOpacity
+            }}
+          />
         </div>
         
         {/* Content overlay */}
@@ -111,7 +115,7 @@ export default function Home() {
           <div 
             className="absolute inset-0"
             style={{
-              backgroundImage: `url('/room-dark.png')`,
+              backgroundImage: `url('/room-dark.webp')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -122,7 +126,7 @@ export default function Home() {
           <motion.div 
             className="absolute inset-0"
             style={{
-              backgroundImage: `url('/room-lit.png')`,
+              backgroundImage: `url('/room-lit.webp')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
