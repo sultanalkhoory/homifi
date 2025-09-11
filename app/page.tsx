@@ -135,37 +135,48 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Lighting Experience Section with Ambient Background */}
-      <section className="min-h-screen bg-gradient-to-br from-amber-900/20 via-yellow-900/10 to-orange-900/20 relative overflow-hidden">
-        {/* Subtle ambient glow overlay */}
-        <div className="absolute inset-0 bg-gradient-radial from-yellow-500/5 via-transparent to-transparent"></div>
-        
-        <div className="flex flex-col items-center justify-center min-h-screen px-8 relative z-10">
-          
-          {/* Text section */}
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl md:text-7xl font-thin mb-8 text-white">
-              Perfect Light
-            </h2>
-            <p className="text-xl md:text-2xl text-white/80 font-light max-w-2xl">
-              Every room. Every moment. Exactly as you want it.
-            </p>
-          </motion.div>
-          
-          {/* iPhone with Lights Interface */}
-          <motion.div 
-            initial={{ opacity: 0.8, scale: 0.75 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 2, ease: "easeOut" }}
-            viewport={{ once: true }}
-            className="relative"
-          >
+      {/* Lighting Experience Section with Working Background */}
+<section 
+  className="min-h-screen relative overflow-hidden"
+  style={{
+    background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 25%, #2d1b0f 50%, #1a1a1a 75%, #0f0f0f 100%)',
+  }}
+>
+  {/* Warm glow overlay */}
+  <div 
+    className="absolute inset-0"
+    style={{
+      background: 'radial-gradient(ellipse 80% 50% at 50% 30%, rgba(255, 193, 7, 0.08) 0%, transparent 70%)',
+    }}
+  ></div>
+  
+  <div className="flex flex-col items-center justify-center min-h-screen px-8 relative z-10">
+    
+    {/* Text section */}
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.5 }}
+      viewport={{ once: true }}
+      className="text-center mb-16"
+    >
+      <h2 className="text-5xl md:text-7xl font-thin mb-8 text-white">
+        Perfect Light
+      </h2>
+      <p className="text-xl md:text-2xl text-white/80 font-light max-w-2xl">
+        Every room. Every moment. Exactly as you want it.
+      </p>
+    </motion.div>
+    
+    {/* iPhone with Lights Interface */}
+    <motion.div 
+      initial={{ opacity: 0.8, scale: 0.75 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 2, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="relative"
+    >
+      {/* Rest of iPhone code stays the same... */}
             <div className="w-80 md:w-96 h-[640px] md:h-[770px] bg-black rounded-[3rem] p-3 shadow-2xl">
               <div className="w-full h-full bg-gradient-to-br from-purple-900 via-blue-900 to-teal-800 rounded-[2.5rem] relative overflow-hidden">
                 
