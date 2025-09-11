@@ -5,30 +5,105 @@ import { motion } from 'framer-motion'
 export default function Home() {
   return (
     <main className="bg-black text-white">
-      {/* Hero Section */}
+      {/* New Emotional Hero Section - Room Transition */}
+      <section className="min-h-screen relative overflow-hidden">
+        {/* Dark room background */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url('/dark-room.jpg')`, // Dark room
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        ></div>
+        
+        {/* Lit room overlay - fades in on scroll */}
+        <motion.div 
+          className="absolute inset-0 z-10"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 2, ease: "easeInOut" }}
+          viewport={{ once: false, amount: 0.3 }}
+          style={{
+            backgroundImage: `url('/lit-room.jpg')`, // Lit room
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        ></motion.div>
+        
+        {/* Content overlay */}
+        <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-8">
+          
+          {/* Main headline with breathing glow */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.5 }}
+            className="text-center mb-16"
+          >
+            <motion.h1 
+              className="text-6xl md:text-8xl font-thin mb-8 text-white"
+              animate={{ 
+                textShadow: [
+                  "0 0 20px rgba(255, 255, 255, 0.1)",
+                  "0 0 30px rgba(255, 255, 255, 0.2)", 
+                  "0 0 20px rgba(255, 255, 255, 0.1)"
+                ] 
+              }}
+              transition={{ 
+                duration: 3, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+            >
+              HomiFi
+            </motion.h1>
+            <p className="text-2xl md:text-3xl text-white/90 font-light max-w-3xl">
+              Your home. Intelligently connected.
+            </p>
+          </motion.div>
+          
+          {/* Scroll indicator */}
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 2 }}
+            className="absolute bottom-12 text-white/70 text-lg font-light animate-bounce"
+          >
+            Scroll to illuminate
+          </motion.div>
+          
+        </div>
+      </section>
+
+      {/* Dashboard Section - Now Section 2 */}
       <section className="min-h-screen bg-gradient-to-br from-blue-600 via-purple-600 to-purple-700 flex flex-col items-center justify-center relative overflow-hidden">
         
-        {/* HomiFi Title */}
+        {/* Section intro text */}
         <motion.div 
           initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2 }}
-          className="text-center px-8 z-10"
+          viewport={{ once: true }}
+          className="text-center px-8 z-10 mb-8"
         >
-          <h1 className="text-6xl md:text-8xl font-thin mb-8 text-white">
-            HomiFi
-          </h1>
+          <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white">
+            Control Everything
+          </h2>
           <p className="text-xl md:text-2xl text-white/90 font-light max-w-2xl">
-            Your home. Intelligently connected.
+            Every device, every room, in one place.
           </p>
         </motion.div>
         
         {/* iPhone Mockup - Apple Home Dashboard */}
         <motion.div 
           initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="mt-16 mb-16"
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mb-16"
         >
           <div className="w-72 h-[580px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
             <div className="w-full h-full bg-gradient-to-br from-purple-900 via-blue-900 to-teal-800 rounded-[2rem] relative overflow-hidden">
@@ -63,7 +138,7 @@ export default function Home() {
               <div className="px-6 pt-16 pb-6 h-full">
                 <div className="text-white text-3xl font-semibold mb-6">HomiFi</div>
                 
-                {/* Category Pills - Proper Colors */}
+                {/* Category Pills */}
                 <div className="flex space-x-2 mb-6">
                   <div className="bg-blue-500/30 rounded-full px-3 py-1.5 border border-blue-400/30">
                     <div className="flex items-center">
@@ -123,75 +198,49 @@ export default function Home() {
             </div>
           </div>
         </motion.div>
-        
-        {/* Scroll Indicator */}
-        <motion.div 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 2 }}
-          className="absolute bottom-8 text-white/70 text-sm animate-bounce"
-        >
-          Scroll to illuminate
-        </motion.div>
       </section>
 
-      {/* Lighting Experience Section with Prominent Ambient Background */}
-<section 
-  className="min-h-screen relative overflow-hidden"
-  style={{
-    background: 'linear-gradient(135deg, #1a0f0a 0%, #2d1b0f 25%, #3d2515 50%, #2d1b0f 75%, #1a0f0a 100%)',
-  }}
->
-  {/* Prominent warm glow overlay */}
-  <div 
-    className="absolute inset-0"
-    style={{
-      background: 'radial-gradient(ellipse 100% 60% at 50% 30%, rgba(255, 193, 7, 0.25) 0%, rgba(255, 165, 0, 0.15) 40%, transparent 70%)',
-    }}
-  ></div>
-  
-  {/* Additional atmospheric layers */}
-  <div 
-    className="absolute inset-0"
-    style={{
-      background: 'radial-gradient(ellipse 120% 80% at 20% 20%, rgba(255, 214, 10, 0.12) 0%, transparent 50%)',
-    }}
-  ></div>
-  
-  <div 
-    className="absolute inset-0"
-    style={{
-      background: 'radial-gradient(ellipse 120% 80% at 80% 80%, rgba(255, 179, 0, 0.08) 0%, transparent 50%)',
-    }}
-  ></div>
-  
-  <div className="flex flex-col items-center justify-center min-h-screen px-8 relative z-10">
-    
-    {/* Text section */}
-    <motion.div 
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1.5 }}
-      viewport={{ once: true }}
-      className="text-center mb-16"
-    >
-      <h2 className="text-5xl md:text-7xl font-thin mb-8 text-white">
-        Perfect Light
-      </h2>
-      <p className="text-xl md:text-2xl text-white/80 font-light max-w-2xl">
-        Every room. Every moment. Exactly as you want it.
-      </p>
-    </motion.div>
-    
-    {/* iPhone with Lights Interface */}
-    <motion.div 
-      initial={{ opacity: 0.8, scale: 0.75 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 2, ease: "easeOut" }}
-      viewport={{ once: true }}
-      className="relative"
-    >
-      {/* Rest of iPhone code stays the same... */}
+      {/* Lighting Experience Section */}
+      <section 
+        className="min-h-screen relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, #1a0f0a 0%, #2d1b0f 25%, #3d2515 50%, #2d1b0f 75%, #1a0f0a 100%)',
+        }}
+      >
+        {/* Prominent warm glow overlay */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'radial-gradient(ellipse 100% 60% at 50% 30%, rgba(255, 193, 7, 0.25) 0%, rgba(255, 165, 0, 0.15) 40%, transparent 70%)',
+          }}
+        ></div>
+        
+        <div className="flex flex-col items-center justify-center min-h-screen px-8 relative z-10">
+          
+          {/* Text section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl md:text-7xl font-thin mb-8 text-white">
+              Perfect Light
+            </h2>
+            <p className="text-xl md:text-2xl text-white/80 font-light max-w-2xl">
+              Every room. Every moment. Exactly as you want it.
+            </p>
+          </motion.div>
+          
+          {/* iPhone with Lights Interface */}
+          <motion.div 
+            initial={{ opacity: 0.8, scale: 0.75 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="relative"
+          >
             <div className="w-80 md:w-96 h-[640px] md:h-[770px] bg-black rounded-[3rem] p-3 shadow-2xl">
               <div className="w-full h-full bg-gradient-to-br from-purple-900 via-blue-900 to-teal-800 rounded-[2.5rem] relative overflow-hidden">
                 
@@ -270,7 +319,7 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  {/* Scenes - Same Size as First iPhone */}
+                  {/* Scenes */}
                   <div className="mb-6">
                     <div className="flex items-center justify-between mb-3">
                       <div className="text-white text-lg font-semibold">Scenes</div>
@@ -284,99 +333,99 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  {/* Room Lights */}
-<div>
-  <div className="text-white text-lg font-semibold mb-3">Living Room</div>
-  <div className="grid grid-cols-2 gap-3">
-    <motion.div 
-      initial={{ backgroundColor: "rgba(31, 41, 55, 0.6)" }}
-      whileInView={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
-      transition={{ duration: 1, delay: 1 }}
-      viewport={{ once: true }}
-      className="rounded-2xl p-3 border border-gray-700/30"
-    >
-      <motion.div 
-        className="text-yellow-600 text-xl mb-2"
-        animate={{ 
-          textShadow: [
-            "0 0 5px rgba(255, 193, 7, 0.3)",
-            "0 0 10px rgba(255, 193, 7, 0.6)", 
-            "0 0 5px rgba(255, 193, 7, 0.3)"
-          ] 
-        }}
-        transition={{ 
-          duration: 2, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-      >
-        💡
-      </motion.div>
-      <motion.div 
-        initial={{ color: "rgb(255, 255, 255)" }}
-        whileInView={{ color: "rgb(0, 0, 0)" }}
-        transition={{ duration: 1, delay: 1 }}
-        viewport={{ once: true }}
-        className="text-sm font-medium"
-      >
-        Cove Light
-      </motion.div>
-      <motion.div 
-        initial={{ color: "rgba(255, 255, 255, 0.5)" }}
-        whileInView={{ color: "rgba(0, 0, 0, 0.6)" }}
-        transition={{ duration: 1, delay: 1 }}
-        viewport={{ once: true }}
-        className="text-xs"
-      >
-        On
-      </motion.div>
-    </motion.div>
-    
-    <motion.div 
-      initial={{ backgroundColor: "rgba(31, 41, 55, 0.6)" }}
-      whileInView={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
-      transition={{ duration: 1, delay: 1.2 }}
-      viewport={{ once: true }}
-      className="rounded-2xl p-3 border border-gray-700/30"
-    >
-      <motion.div 
-        className="text-yellow-600 text-xl mb-2"
-        animate={{ 
-          textShadow: [
-            "0 0 5px rgba(255, 193, 7, 0.3)",
-            "0 0 10px rgba(255, 193, 7, 0.6)", 
-            "0 0 5px rgba(255, 193, 7, 0.3)"
-          ] 
-        }}
-        transition={{ 
-          duration: 2, 
-          repeat: Infinity, 
-          ease: "easeInOut" 
-        }}
-      >
-        💡
-      </motion.div>
-      <motion.div 
-        initial={{ color: "rgb(255, 255, 255)" }}
-        whileInView={{ color: "rgb(0, 0, 0)" }}
-        transition={{ duration: 1, delay: 1.2 }}
-        viewport={{ once: true }}
-        className="text-sm font-medium"
-      >
-        Spotlight
-      </motion.div>
-      <motion.div 
-        initial={{ color: "rgba(255, 255, 255, 0.5)" }}
-        whileInView={{ color: "rgba(0, 0, 0, 0.6)" }}
-        transition={{ duration: 1, delay: 1.2 }}
-        viewport={{ once: true }}
-        className="text-xs"
-      >
-        On
-      </motion.div>
-    </motion.div>
-  </div>
-</div>
+                  {/* Room Lights with Breathing Glow */}
+                  <div>
+                    <div className="text-white text-lg font-semibold mb-3">Living Room</div>
+                    <div className="grid grid-cols-2 gap-3">
+                      <motion.div 
+                        initial={{ backgroundColor: "rgba(31, 41, 55, 0.6)" }}
+                        whileInView={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+                        transition={{ duration: 1, delay: 1 }}
+                        viewport={{ once: true }}
+                        className="rounded-2xl p-3 border border-gray-700/30"
+                      >
+                        <motion.div 
+                          className="text-yellow-600 text-xl mb-2"
+                          animate={{ 
+                            textShadow: [
+                              "0 0 5px rgba(255, 193, 7, 0.3)",
+                              "0 0 10px rgba(255, 193, 7, 0.6)", 
+                              "0 0 5px rgba(255, 193, 7, 0.3)"
+                            ] 
+                          }}
+                          transition={{ 
+                            duration: 2, 
+                            repeat: Infinity, 
+                            ease: "easeInOut" 
+                          }}
+                        >
+                          💡
+                        </motion.div>
+                        <motion.div 
+                          initial={{ color: "rgb(255, 255, 255)" }}
+                          whileInView={{ color: "rgb(0, 0, 0)" }}
+                          transition={{ duration: 1, delay: 1 }}
+                          viewport={{ once: true }}
+                          className="text-sm font-medium"
+                        >
+                          Cove Light
+                        </motion.div>
+                        <motion.div 
+                          initial={{ color: "rgba(255, 255, 255, 0.5)" }}
+                          whileInView={{ color: "rgba(0, 0, 0, 0.6)" }}
+                          transition={{ duration: 1, delay: 1 }}
+                          viewport={{ once: true }}
+                          className="text-xs"
+                        >
+                          On
+                        </motion.div>
+                      </motion.div>
+                      
+                      <motion.div 
+                        initial={{ backgroundColor: "rgba(31, 41, 55, 0.6)" }}
+                        whileInView={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+                        transition={{ duration: 1, delay: 1.2 }}
+                        viewport={{ once: true }}
+                        className="rounded-2xl p-3 border border-gray-700/30"
+                      >
+                        <motion.div 
+                          className="text-yellow-600 text-xl mb-2"
+                          animate={{ 
+                            textShadow: [
+                              "0 0 5px rgba(255, 193, 7, 0.3)",
+                              "0 0 10px rgba(255, 193, 7, 0.6)", 
+                              "0 0 5px rgba(255, 193, 7, 0.3)"
+                            ] 
+                          }}
+                          transition={{ 
+                            duration: 2, 
+                            repeat: Infinity, 
+                            ease: "easeInOut" 
+                          }}
+                        >
+                          💡
+                        </motion.div>
+                        <motion.div 
+                          initial={{ color: "rgb(255, 255, 255)" }}
+                          whileInView={{ color: "rgb(0, 0, 0)" }}
+                          transition={{ duration: 1, delay: 1.2 }}
+                          viewport={{ once: true }}
+                          className="text-sm font-medium"
+                        >
+                          Spotlight
+                        </motion.div>
+                        <motion.div 
+                          initial={{ color: "rgba(255, 255, 255, 0.5)" }}
+                          whileInView={{ color: "rgba(0, 0, 0, 0.6)" }}
+                          transition={{ duration: 1, delay: 1.2 }}
+                          viewport={{ once: true }}
+                          className="text-xs"
+                        >
+                          On
+                        </motion.div>
+                      </motion.div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
