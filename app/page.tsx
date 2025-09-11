@@ -34,43 +34,34 @@ export default function Home() {
             <div className="w-full h-full bg-gradient-to-br from-purple-900 via-blue-900 to-teal-800 rounded-[2rem] relative overflow-hidden">
               
               {/* Dynamic Island */}
-              <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-black rounded-full z-10 flex items-center justify-center px-2">
-                <div className="w-2 h-2 bg-gray-800 rounded-full mr-2 opacity-80"></div>
-                <div className="w-1 h-1 bg-gray-700 rounded-full opacity-60"></div>
-              </div>
-              
-              {/* Status Bar */}
-              <div className="pt-12 px-6">
-                <div className="flex items-center justify-between mb-1">
-                  <div className="text-white text-sm font-medium">1:17</div>
-                  <div className="flex items-center space-x-2">
-                    {/* Signal */}
-                    <div className="flex items-end space-x-0.5">
-                      <div className="w-1 h-1 bg-white rounded-full"></div>
-                      <div className="w-1 h-1.5 bg-white rounded-full"></div>
-                      <div className="w-1 h-2 bg-white rounded-full"></div>
-                      <div className="w-1 h-2.5 bg-white rounded-full"></div>
-                    </div>
-                    {/* WiFi */}
-                    <svg className="w-4 h-3 text-white" viewBox="0 0 20 15" fill="currentColor">
-                      <path d="M2.5 8.5c3.5-3.5 9-3.5 12.5 0l-1.5 1.5c-2.5-2.5-6.5-2.5-9 0L2.5 8.5z"/>
-                      <path d="M5 11c2-2 5-2 7 0l-1.5 1.5c-1-1-2.5-1-3.5 0L5 11z"/>
-                      <circle cx="10" cy="14" r="1"/>
-                    </svg>
-                    {/* Battery */}
-                    <div className="flex items-center">
-                      <div className="w-6 h-3 border border-white rounded-sm relative">
-                        <div className="w-4 h-1.5 bg-green-400 rounded-sm absolute top-0.5 left-0.5"></div>
-                      </div>
-                      <div className="w-0.5 h-1.5 bg-white rounded-r ml-0.5"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Content */}
-              <div className="px-6 pt-4 pb-6 h-full">
-                <div className="text-white text-3xl font-semibold mb-6">SK Home</div>
+<div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-black rounded-full z-10 flex items-center justify-center px-2">
+  <div className="w-2 h-2 bg-gray-800 rounded-full mr-2 opacity-80"></div>
+  <div className="w-1 h-1 bg-gray-700 rounded-full opacity-60"></div>
+</div>
+
+{/* Status Elements Around Dynamic Island */}
+<div className="absolute top-3 left-6">
+  <div className="text-white text-sm font-medium">1:17</div>
+</div>
+<div className="absolute top-3 right-6 flex items-center space-x-2">
+  {/* WiFi */}
+  <svg className="w-4 h-3 text-white" viewBox="0 0 20 15" fill="currentColor">
+    <path d="M2.5 8.5c3.5-3.5 9-3.5 12.5 0l-1.5 1.5c-2.5-2.5-6.5-2.5-9 0L2.5 8.5z"/>
+    <path d="M5 11c2-2 5-2 7 0l-1.5 1.5c-1-1-2.5-1-3.5 0L5 11z"/>
+    <circle cx="10" cy="14" r="1"/>
+  </svg>
+  {/* Battery */}
+  <div className="flex items-center">
+    <div className="w-6 h-3 border border-white rounded-sm relative">
+      <div className="w-4 h-1.5 bg-green-400 rounded-sm absolute top-0.5 left-0.5"></div>
+    </div>
+    <div className="w-0.5 h-1.5 bg-white rounded-r ml-0.5"></div>
+  </div>
+</div>
+
+{/* Content */}
+<div className="px-6 pt-16 pb-6 h-full">
+  <div className="text-white text-3xl font-semibold mb-6">HomiFi</div>
                 
                 {/* Category Pills - Smaller */}
                 <div className="flex space-x-2 mb-6">
@@ -96,18 +87,18 @@ export default function Home() {
                 </div>
                 
                 {/* Scenes */}
-                <div className="mb-6">
-                  <div className="flex items-center justify-between mb-3">
-                    <div className="text-white text-lg font-semibold">Scenes</div>
-                    <div className="text-white/60 text-sm">›</div>
-                  </div>
-                  <div className="bg-gray-900/60 rounded-2xl p-4 border border-gray-700/30">
-                    <div className="flex items-center">
-                      <div className="text-2xl mr-3">🍿</div>
-                      <div className="text-white text-base font-medium">Movie Night</div>
-                    </div>
-                  </div>
-                </div>
+<div className="mb-6">
+  <div className="flex items-center justify-between mb-3">
+    <div className="text-white text-lg font-semibold">Scenes</div>
+    <div className="text-white/60 text-sm">›</div>
+  </div>
+  <div className="bg-gray-900/60 rounded-2xl p-3 border border-gray-700/30 max-w-48">
+    <div className="flex items-center">
+      <div className="text-xl mr-3">🍿</div>
+      <div className="text-white text-sm font-medium">Movie Night</div>
+    </div>
+  </div>
+</div>
                 
                 {/* Favorites */}
                 <div>
