@@ -135,18 +135,33 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Lighting Experience Section with Working Background */}
+      {/* Lighting Experience Section with Prominent Ambient Background */}
 <section 
   className="min-h-screen relative overflow-hidden"
   style={{
-    background: 'linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 25%, #2d1b0f 50%, #1a1a1a 75%, #0f0f0f 100%)',
+    background: 'linear-gradient(135deg, #1a0f0a 0%, #2d1b0f 25%, #3d2515 50%, #2d1b0f 75%, #1a0f0a 100%)',
   }}
 >
-  {/* Warm glow overlay */}
+  {/* Prominent warm glow overlay */}
   <div 
     className="absolute inset-0"
     style={{
-      background: 'radial-gradient(ellipse 80% 50% at 50% 30%, rgba(255, 193, 7, 0.08) 0%, transparent 70%)',
+      background: 'radial-gradient(ellipse 100% 60% at 50% 30%, rgba(255, 193, 7, 0.25) 0%, rgba(255, 165, 0, 0.15) 40%, transparent 70%)',
+    }}
+  ></div>
+  
+  {/* Additional atmospheric layers */}
+  <div 
+    className="absolute inset-0"
+    style={{
+      background: 'radial-gradient(ellipse 120% 80% at 20% 20%, rgba(255, 214, 10, 0.12) 0%, transparent 50%)',
+    }}
+  ></div>
+  
+  <div 
+    className="absolute inset-0"
+    style={{
+      background: 'radial-gradient(ellipse 120% 80% at 80% 80%, rgba(255, 179, 0, 0.08) 0%, transparent 50%)',
     }}
   ></div>
   
