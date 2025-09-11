@@ -7,11 +7,11 @@ export default function Home() {
   const [lightsOn, setLightsOn] = useState(false)
   const [dashboardInView, setDashboardInView] = useState(false)
   
-  // Much more gradual spring transition
+  // Faster spring transition - back to original timing
   const backgroundProgress = useSpring(0, { 
-    stiffness: 25,  
-    damping: 30,    
-    mass: 1.2       
+    stiffness: 120,  // Much faster
+    damping: 18,     // Less dampening
+    mass: 0.8        // Lighter feel
   })
 
   // Auto-trigger lights when dashboard appears
@@ -20,7 +20,7 @@ export default function Home() {
       const timer = setTimeout(() => {
         setLightsOn(true)
         backgroundProgress.set(1)
-      }, 2000)
+      }, 1000) // Back to 1 second delay
       return () => clearTimeout(timer)
     }
   }, [dashboardInView, lightsOn, backgroundProgress])
@@ -92,7 +92,7 @@ export default function Home() {
         onViewportEnter={() => setDashboardInView(true)}
         viewport={{ once: true, amount: 0.3 }}
       >
-        {/* Very Gradual Background Transition */}
+        {/* Faster Background Transition */}
         <div className="absolute inset-0 z-0">
           {/* Dark room base */}
           <div 
@@ -105,7 +105,7 @@ export default function Home() {
             }}
           />
           
-          {/* Lit room - extremely gradual overlay */}
+          {/* Lit room - faster overlay */}
           <motion.div 
             className="absolute inset-0"
             style={{
@@ -117,7 +117,7 @@ export default function Home() {
             }}
           />
           
-          {/* Subtle breathing glow */}
+          {/* Breathing glow */}
           <motion.div 
             className="absolute inset-0"
             style={{
@@ -127,7 +127,7 @@ export default function Home() {
               opacity: [0.5, 0.8, 0.5]
             } : { opacity: 0 }}
             transition={{
-              duration: 5,
+              duration: 4,
               repeat: Infinity,
               ease: "easeInOut"
             }}
@@ -136,7 +136,7 @@ export default function Home() {
         
         <div className="flex flex-col items-start justify-center min-h-screen px-8 md:px-16 relative z-10">
           
-          {/* Text section - Apple-style: headline first */}
+          {/* Text section */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -152,7 +152,7 @@ export default function Home() {
             </p>
           </motion.div>
           
-          {/* iPhone - smaller size, positioned below text */}
+          {/* iPhone */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -190,7 +190,7 @@ export default function Home() {
                 <div className="px-5 pt-12 pb-5 h-full">
                   <div className="text-white text-2xl font-semibold mb-4">Lights</div>
                   
-                  {/* Category Pills - Lights Selected */}
+                  {/* Category Pills */}
                   <div className="flex space-x-1.5 mb-5">
                     <motion.div 
                       className="rounded-full px-2.5 py-1 border cursor-pointer"
@@ -199,7 +199,7 @@ export default function Home() {
                         backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.9)" : "rgba(59, 130, 246, 0.3)",
                         borderColor: lightsOn ? "rgba(255, 255, 255, 0.3)" : "rgba(96, 165, 250, 0.3)"
                       }}
-                      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <div className="flex items-center">
                         <motion.div 
@@ -213,7 +213,7 @@ export default function Home() {
                             ] : "none"
                           }}
                           transition={{
-                            color: { duration: 1.2 },
+                            color: { duration: 0.8 },
                             textShadow: {
                               duration: 2,
                               repeat: Infinity,
@@ -229,7 +229,7 @@ export default function Home() {
                             animate={{
                               color: lightsOn ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
                             }}
-                            transition={{ duration: 1.2 }}
+                            transition={{ duration: 0.8 }}
                           >
                             Lights
                           </motion.div>
@@ -238,7 +238,7 @@ export default function Home() {
                             animate={{
                               color: lightsOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.7)"
                             }}
-                            transition={{ duration: 1.2 }}
+                            transition={{ duration: 0.8 }}
                           >
                             {lightsOn ? "3 On" : "Off"}
                           </motion.div>
@@ -257,7 +257,7 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  {/* Room Lights with Breathing Glow */}
+                  {/* Room Lights */}
                   <div>
                     <div className="text-white text-base font-semibold mb-3">Living Room</div>
                     <div className="grid grid-cols-2 gap-2.5">
@@ -266,7 +266,7 @@ export default function Home() {
                         animate={{
                           backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.9)" : "rgba(31, 41, 55, 0.6)"
                         }}
-                        transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <motion.div 
                           className="text-base mb-1.5"
@@ -279,7 +279,7 @@ export default function Home() {
                             ] : "none"
                           }}
                           transition={{
-                            color: { duration: 1.5 },
+                            color: { duration: 1 },
                             textShadow: {
                               duration: 2,
                               repeat: Infinity,
@@ -294,7 +294,7 @@ export default function Home() {
                           animate={{
                             color: lightsOn ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
                           }}
-                          transition={{ duration: 1.5 }}
+                          transition={{ duration: 1 }}
                         >
                           Cove Light
                         </motion.div>
@@ -303,7 +303,7 @@ export default function Home() {
                           animate={{
                             color: lightsOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.5)"
                           }}
-                          transition={{ duration: 1.5 }}
+                          transition={{ duration: 1 }}
                         >
                           {lightsOn ? "On" : "Off"}
                         </motion.div>
@@ -314,7 +314,7 @@ export default function Home() {
                         animate={{
                           backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.9)" : "rgba(31, 41, 55, 0.6)"
                         }}
-                        transition={{ duration: 1.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                        transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <motion.div 
                           className="text-base mb-1.5"
@@ -327,7 +327,7 @@ export default function Home() {
                             ] : "none"
                           }}
                           transition={{
-                            color: { duration: 1.5, delay: 0.2 },
+                            color: { duration: 1, delay: 0.2 },
                             textShadow: {
                               duration: 2,
                               repeat: Infinity,
@@ -342,7 +342,7 @@ export default function Home() {
                           animate={{
                             color: lightsOn ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
                           }}
-                          transition={{ duration: 1.5, delay: 0.2 }}
+                          transition={{ duration: 1, delay: 0.2 }}
                         >
                           Spotlight
                         </motion.div>
@@ -351,7 +351,7 @@ export default function Home() {
                           animate={{
                             color: lightsOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.5)"
                           }}
-                          transition={{ duration: 1.5, delay: 0.2 }}
+                          transition={{ duration: 1, delay: 0.2 }}
                         >
                           {lightsOn ? "On" : "Off"}
                         </motion.div>
