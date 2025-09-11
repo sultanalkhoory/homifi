@@ -1,63 +1,54 @@
 'use client'
 
-import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
   const [lightsOn, setLightsOn] = useState(false)
   const [dashboardInView, setDashboardInView] = useState(false)
   
-  // Create smooth transition for background opacity
-  const backgroundOpacity = useMotionValue(0)
-  const litOpacity = useTransform(backgroundOpacity, [0, 1], [0, 1])
+  // Create smooth spring transition for background opacity - more Apple-like
+  const backgroundProgress = useSpring(0, { 
+    stiffness: 60, 
+    damping: 25,
+    mass: 0.8
+  })
+  
+  const litOpacity = useTransform(backgroundProgress, [0, 1], [0, 1])
 
-  // Auto-trigger lights when dashboard appears
+  // Auto-trigger lights when dashboard appears with Apple-style timing
   useEffect(() => {
     if (dashboardInView && !lightsOn) {
       const timer = setTimeout(() => {
         setLightsOn(true)
-        backgroundOpacity.set(1)
-      }, 1000)
+        // Gradual, breathing transition - very Apple-like
+        backgroundProgress.set(1)
+      }, 1500) // Longer delay for anticipation
       return () => clearTimeout(timer)
     }
-  }, [dashboardInView, lightsOn, backgroundOpacity])
+  }, [dashboardInView, lightsOn, backgroundProgress])
 
-  // Handle manual light toggle
+  // Handle manual light toggle with smooth spring
   const toggleLights = () => {
     const newState = !lightsOn
     setLightsOn(newState)
-    backgroundOpacity.set(newState ? 1 : 0)
+    backgroundProgress.set(newState ? 1 : 0)
   }
 
   return (
     <main className="bg-black text-white">
-      {/* Hero Section with Dark Room Background */}
+      {/* Hero Section - Dark Room Only (No Lighting) */}
       <section className="min-h-screen relative overflow-hidden">
-        {/* Background Images - Crossfade Effect */}
-        <div className="absolute inset-0 z-0">
-          {/* Dark room - always visible */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url('/room-dark.webp')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-          
-          {/* Lit room - fades in when lights turn on */}
-          <motion.div 
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url('/room-lit.webp')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              opacity: litOpacity
-            }}
-          />
-        </div>
+        {/* Static Dark Background - No Transition Here */}
+        <div 
+          className="absolute inset-0 z-0"
+          style={{
+            backgroundImage: `url('/room-dark.webp')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}
+        />
         
         {/* Content overlay */}
         <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-8">
@@ -103,15 +94,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Dashboard Section - Same Background with Lighting Control */}
+      {/* Dashboard Section - With Gradual Lighting Transition */}
       <motion.section 
         className="min-h-screen relative overflow-hidden"
         onViewportEnter={() => setDashboardInView(true)}
         viewport={{ once: true, amount: 0.3 }}
       >
-        {/* Same Background Images - Continues from Hero */}
+        {/* Background with Apple-style Crossfade */}
         <div className="absolute inset-0 z-0">
-          {/* Dark room */}
+          {/* Dark room base */}
           <div 
             className="absolute inset-0"
             style={{
@@ -122,7 +113,7 @@ export default function Home() {
             }}
           />
           
-          {/* Lit room - controlled by lights state */}
+          {/* Lit room - gradual, breathing overlay */}
           <motion.div 
             className="absolute inset-0"
             style={{
@@ -132,7 +123,23 @@ export default function Home() {
               backgroundRepeat: 'no-repeat',
               opacity: litOpacity
             }}
-            transition={{ duration: 0.9, ease: "easeInOut" }}
+          />
+          
+          {/* Additional warm glow layer for breathing effect */}
+          <motion.div 
+            className="absolute inset-0"
+            style={{
+              background: 'radial-gradient(ellipse 70% 50% at 50% 30%, rgba(255, 193, 7, 0.15) 0%, transparent 70%)',
+              opacity: litOpacity
+            }}
+            animate={lightsOn ? {
+              opacity: [0.8, 1, 0.8]
+            } : {}}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
           />
         </div>
         
@@ -198,18 +205,31 @@ export default function Home() {
                   {/* Category Pills */}
                   <div className="flex space-x-2 mb-6">
                     <motion.div 
-                      className="bg-blue-500/30 rounded-full px-3 py-1.5 border border-blue-400/30 cursor-pointer"
+                      className="rounded-full px-3 py-1.5 border cursor-pointer"
                       onClick={toggleLights}
                       animate={{
-                        backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.9)" : "rgba(59, 130, 246, 0.3)"
+                        backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.9)" : "rgba(59, 130, 246, 0.3)",
+                        borderColor: lightsOn ? "rgba(255, 255, 255, 0.3)" : "rgba(96, 165, 250, 0.3)"
                       }}
-                      transition={{ duration: 0.5 }}
+                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     >
                       <div className="flex items-center">
                         <motion.div 
                           className="text-xs mr-1.5"
                           animate={{
-                            color: lightsOn ? "#2563eb" : "#93c5fd"
+                            color: lightsOn ? "#2563eb" : "#93c5fd",
+                            textShadow: lightsOn ? [
+                              "0 0 5px rgba(37, 99, 235, 0.3)",
+                              "0 0 10px rgba(37, 99, 235, 0.6)", 
+                              "0 0 5px rgba(37, 99, 235, 0.3)"
+                            ] : "none"
+                          }}
+                          transition={{
+                            textShadow: {
+                              duration: 2,
+                              repeat: Infinity,
+                              ease: "easeInOut"
+                            }
                           }}
                         >
                           💡
@@ -220,6 +240,7 @@ export default function Home() {
                             animate={{
                               color: lightsOn ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
                             }}
+                            transition={{ duration: 0.8 }}
                           >
                             Lights
                           </motion.div>
@@ -228,6 +249,7 @@ export default function Home() {
                             animate={{
                               color: lightsOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.7)"
                             }}
+                            transition={{ duration: 0.8 }}
                           >
                             {lightsOn ? "3 On" : "Off"}
                           </motion.div>
