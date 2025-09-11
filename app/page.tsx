@@ -39,7 +39,7 @@ export default function Home() {
         <div 
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: `url('/room-dark.webp')`,
+            backgroundImage: `url('/room-dark.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
@@ -86,7 +86,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Lights Control Section - iPhone on Left */}
+      {/* Lights Control Section */}
       <motion.section 
         className="min-h-screen relative overflow-hidden"
         onViewportEnter={() => setDashboardInView(true)}
@@ -98,7 +98,7 @@ export default function Home() {
           <div 
             className="absolute inset-0"
             style={{
-              backgroundImage: `url('/room-dark.webp')`,
+              backgroundImage: `url('/room-dark.png')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -109,7 +109,7 @@ export default function Home() {
           <motion.div 
             className="absolute inset-0"
             style={{
-              backgroundImage: `url('/room-lit.webp')`,
+              backgroundImage: `url('/room-lit.png')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
@@ -134,67 +134,66 @@ export default function Home() {
           />
         </div>
         
-        <div className="flex flex-col items-center justify-center min-h-screen px-8 relative z-10">
+        <div className="flex flex-col items-start justify-center min-h-screen px-8 md:px-16 relative z-10">
           
-          {/* Text section - centered */}
+          {/* Text section - Apple-style: headline first */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5 }}
             viewport={{ once: true }}
-            className="text-center mb-16"
+            className="mb-12 max-w-lg"
           >
-            <h2 className="text-5xl md:text-7xl font-thin mb-8 text-white">
+            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
               Perfect Light
             </h2>
-            <p className="text-xl md:text-2xl text-white/80 font-light max-w-2xl">
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
               Every room. Every moment. Exactly as you want it.
             </p>
           </motion.div>
           
-          {/* iPhone positioned on the left */}
+          {/* iPhone - smaller size, positioned below text */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
-            className="flex justify-start w-full max-w-7xl"
           >
-            <div className="w-80 md:w-96 h-[640px] md:h-[770px] bg-black rounded-[3rem] p-3 shadow-2xl">
-              <div className="w-full h-full bg-gradient-to-br from-purple-900 via-blue-900 to-teal-800 rounded-[2.5rem] relative overflow-hidden">
+            <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
+              <div className="w-full h-full bg-gradient-to-br from-purple-900 via-blue-900 to-teal-800 rounded-[2rem] relative overflow-hidden">
                 
                 {/* Dynamic Island */}
-                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-black rounded-full z-10 flex items-center justify-center px-2">
-                  <div className="w-2 h-2 bg-gray-800 rounded-full mr-2 opacity-80"></div>
+                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10 flex items-center justify-center px-2">
+                  <div className="w-1.5 h-1.5 bg-gray-800 rounded-full mr-1.5 opacity-80"></div>
                   <div className="w-1 h-1 bg-gray-700 rounded-full opacity-60"></div>
                 </div>
                 
                 {/* Status Elements */}
-                <div className="absolute top-3 left-6">
-                  <div className="text-white text-sm font-medium">1:19</div>
+                <div className="absolute top-2 left-4">
+                  <div className="text-white text-xs font-medium">1:19</div>
                 </div>
-                <div className="absolute top-3 right-6 flex items-center space-x-2">
-                  <svg className="w-4 h-3 text-white" viewBox="0 0 20 15" fill="currentColor">
+                <div className="absolute top-2 right-4 flex items-center space-x-1.5">
+                  <svg className="w-3 h-2 text-white" viewBox="0 0 20 15" fill="currentColor">
                     <path d="M2.5 8.5c3.5-3.5 9-3.5 12.5 0l-1.5 1.5c-2.5-2.5-6.5-2.5-9 0L2.5 8.5z"/>
                     <path d="M5 11c2-2 5-2 7 0l-1.5 1.5c-1-1-2.5-1-3.5 0L5 11z"/>
                     <circle cx="10" cy="14" r="1"/>
                   </svg>
                   <div className="flex items-center">
-                    <div className="w-6 h-3 border border-white rounded-sm relative">
-                      <div className="w-4 h-1.5 bg-green-400 rounded-sm absolute top-0.5 left-0.5"></div>
+                    <div className="w-5 h-2.5 border border-white rounded-sm relative">
+                      <div className="w-3 h-1 bg-green-400 rounded-sm absolute top-0.5 left-0.5"></div>
                     </div>
-                    <div className="w-0.5 h-1.5 bg-white rounded-r ml-0.5"></div>
+                    <div className="w-0.5 h-1 bg-white rounded-r ml-0.5"></div>
                   </div>
                 </div>
                 
                 {/* Lights Interface Content */}
-                <div className="px-6 pt-16 pb-6 h-full">
-                  <div className="text-white text-3xl font-semibold mb-6">Lights</div>
+                <div className="px-5 pt-12 pb-5 h-full">
+                  <div className="text-white text-2xl font-semibold mb-4">Lights</div>
                   
                   {/* Category Pills - Lights Selected */}
-                  <div className="flex space-x-2 mb-6">
+                  <div className="flex space-x-1.5 mb-5">
                     <motion.div 
-                      className="rounded-full px-3 py-1.5 border cursor-pointer"
+                      className="rounded-full px-2.5 py-1 border cursor-pointer"
                       onClick={toggleLights}
                       animate={{
                         backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.9)" : "rgba(59, 130, 246, 0.3)",
@@ -204,7 +203,7 @@ export default function Home() {
                     >
                       <div className="flex items-center">
                         <motion.div 
-                          className="text-xs mr-1.5"
+                          className="text-xs mr-1"
                           animate={{
                             color: lightsOn ? "#2563eb" : "#93c5fd",
                             textShadow: lightsOn ? [
@@ -247,9 +246,9 @@ export default function Home() {
                       </div>
                     </motion.div>
                     
-                    <div className="bg-green-500/30 rounded-full px-3 py-1.5 border border-green-400/30">
+                    <div className="bg-green-500/30 rounded-full px-2.5 py-1 border border-green-400/30">
                       <div className="flex items-center">
-                        <div className="text-green-300 text-xs mr-1.5">🔒</div>
+                        <div className="text-green-300 text-xs mr-1">🔒</div>
                         <div>
                           <div className="text-white text-xs font-medium">Security</div>
                           <div className="text-white/70 text-xs">Disarmed</div>
@@ -260,17 +259,17 @@ export default function Home() {
                   
                   {/* Room Lights with Breathing Glow */}
                   <div>
-                    <div className="text-white text-lg font-semibold mb-3">Living Room</div>
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="text-white text-base font-semibold mb-3">Living Room</div>
+                    <div className="grid grid-cols-2 gap-2.5">
                       <motion.div 
-                        className="rounded-2xl p-3 border border-gray-700/30"
+                        className="rounded-xl p-2.5 border border-gray-700/30"
                         animate={{
                           backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.9)" : "rgba(31, 41, 55, 0.6)"
                         }}
                         transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <motion.div 
-                          className="text-xl mb-2"
+                          className="text-base mb-1.5"
                           animate={{
                             color: lightsOn ? "#d97706" : "#fbbf24",
                             textShadow: lightsOn ? [
@@ -291,7 +290,7 @@ export default function Home() {
                           💡
                         </motion.div>
                         <motion.div 
-                          className="text-sm font-medium"
+                          className="text-xs font-medium"
                           animate={{
                             color: lightsOn ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
                           }}
@@ -311,14 +310,14 @@ export default function Home() {
                       </motion.div>
                       
                       <motion.div 
-                        className="rounded-2xl p-3 border border-gray-700/30"
+                        className="rounded-xl p-2.5 border border-gray-700/30"
                         animate={{
                           backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.9)" : "rgba(31, 41, 55, 0.6)"
                         }}
                         transition={{ duration: 1.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <motion.div 
-                          className="text-xl mb-2"
+                          className="text-base mb-1.5"
                           animate={{
                             color: lightsOn ? "#d97706" : "#fbbf24",
                             textShadow: lightsOn ? [
@@ -339,7 +338,7 @@ export default function Home() {
                           💡
                         </motion.div>
                         <motion.div 
-                          className="text-sm font-medium"
+                          className="text-xs font-medium"
                           animate={{
                             color: lightsOn ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
                           }}
