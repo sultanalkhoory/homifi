@@ -19,19 +19,18 @@ export default function Home() {
         ></div>
         
         {/* Lit room overlay - fades in on scroll */}
-        <motion.div 
-          className="absolute inset-0 z-10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 2, ease: "easeInOut" }}
-          viewport={{ once: false, amount: 0.3 }}
-          style={{
-            backgroundImage: `url('/lit-room.jpg')`, // Lit room
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat'
-          }}
-        ></motion.div>
+<motion.div 
+  className="absolute inset-0 z-10"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 3, ease: "easeInOut", delay: 1 }}
+  style={{
+    backgroundImage: `url('/lit-room.jpg')`, // Your lit room image
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat'
+  }}
+></motion.div>
         
         {/* Content overlay */}
         <div className="relative z-20 flex flex-col items-center justify-center min-h-screen px-8">
