@@ -124,6 +124,181 @@ export default function Home() {
         </motion.div>
         
       </section>
+      {/* Lighting Experience Section */}
+<section className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
+  {/* Ambient warm glow */}
+  <div className="absolute inset-0 bg-gradient-radial from-yellow-500/10 via-transparent to-transparent opacity-0 transition-opacity duration-3000" id="ambient-glow"></div>
+  
+  <div className="flex flex-col items-center justify-center min-h-screen px-8 relative z-10">
+    
+    {/* Text section */}
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1.5 }}
+      viewport={{ once: true }}
+      className="text-center mb-16"
+    >
+      <h2 className="text-5xl md:text-7xl font-thin mb-8 text-white">
+        Perfect Light
+      </h2>
+      <p className="text-xl md:text-2xl text-white/80 font-light max-w-2xl">
+        Every room. Every moment. Exactly as you want it.
+      </p>
+    </motion.div>
+    
+    {/* iPhone with lighting controls */}
+    <motion.div 
+      initial={{ opacity: 0.8, scale: 0.75 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 2, ease: "easeOut" }}
+      viewport={{ once: true }}
+      className="relative"
+    >
+      <div className="w-80 md:w-96 h-[640px] md:h-[770px] bg-black rounded-[3rem] p-3 shadow-2xl">
+        <div className="w-full h-full bg-gray-900 rounded-[2.5rem] relative overflow-hidden">
+          
+          {/* Dynamic Island */}
+          <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-black rounded-full z-10 flex items-center justify-center px-2">
+            <div className="w-2 h-2 bg-gray-800 rounded-full mr-2 opacity-80"></div>
+            <div className="w-1 h-1 bg-gray-700 rounded-full opacity-60"></div>
+          </div>
+          
+          {/* Lighting Controls Content */}
+          <div className="p-8 pt-20 h-full">
+            <div className="text-white text-4xl font-light mb-4">Lights</div>
+            <div className="text-white/60 text-xl mb-12 font-light">Living Room</div>
+            
+            {/* Light controls */}
+            <div className="space-y-8">
+              <motion.div 
+                initial={{ opacity: 0.6, scale: 1 }}
+                whileInView={{ 
+                  opacity: 1, 
+                  scale: 1.02,
+                  backgroundColor: "rgba(251, 191, 36, 0.15)",
+                  borderColor: "rgba(251, 191, 36, 0.3)"
+                }}
+                transition={{ duration: 1, delay: 0.5 }}
+                viewport={{ once: true }}
+                className="bg-gray-800/60 rounded-3xl p-8 border border-gray-700/30"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <div className="text-white text-xl font-medium">Ceiling Light</div>
+                    <div className="text-white/60 text-lg mt-1">95%</div>
+                  </div>
+                  <motion.div 
+                    initial={{ backgroundColor: "#4B5563" }}
+                    whileInView={{ backgroundColor: "linear-gradient(135deg, #FFD60A, #FFB000)" }}
+                    transition={{ duration: 0.7, delay: 0.8 }}
+                    viewport={{ once: true }}
+                    className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-white shadow-md"></div>
+                  </motion.div>
+                </div>
+                <div className="h-3 bg-gray-700/60 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: "0%" }}
+                    whileInView={{ width: "95%" }}
+                    transition={{ duration: 1, delay: 1 }}
+                    viewport={{ once: true }}
+                    className="h-full bg-gradient-to-r from-amber-300 to-yellow-400 rounded-full"
+                  ></motion.div>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0.6, scale: 1 }}
+                whileInView={{ 
+                  opacity: 1, 
+                  scale: 1.02,
+                  backgroundColor: "rgba(251, 191, 36, 0.15)",
+                  borderColor: "rgba(251, 191, 36, 0.3)"
+                }}
+                transition={{ duration: 1, delay: 0.8 }}
+                viewport={{ once: true }}
+                className="bg-gray-800/60 rounded-3xl p-8 border border-gray-700/30"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <div className="text-white text-xl font-medium">Table Lamps</div>
+                    <div className="text-white/60 text-lg mt-1">80%</div>
+                  </div>
+                  <motion.div 
+                    initial={{ backgroundColor: "#4B5563" }}
+                    whileInView={{ backgroundColor: "linear-gradient(135deg, #FFD60A, #FFB000)" }}
+                    transition={{ duration: 0.7, delay: 1.1 }}
+                    viewport={{ once: true }}
+                    className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-white shadow-md"></div>
+                  </motion.div>
+                </div>
+                <div className="h-3 bg-gray-700/60 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: "0%" }}
+                    whileInView={{ width: "80%" }}
+                    transition={{ duration: 1, delay: 1.3 }}
+                    viewport={{ once: true }}
+                    className="h-full bg-gradient-to-r from-amber-300 to-yellow-400 rounded-full"
+                  ></motion.div>
+                </div>
+              </motion.div>
+              
+              <motion.div 
+                initial={{ opacity: 0.6, scale: 1 }}
+                whileInView={{ 
+                  opacity: 1, 
+                  scale: 1.02,
+                  backgroundColor: "rgba(251, 191, 36, 0.15)",
+                  borderColor: "rgba(251, 191, 36, 0.3)"
+                }}
+                transition={{ duration: 1, delay: 1.1 }}
+                viewport={{ once: true }}
+                className="bg-gray-800/60 rounded-3xl p-8 border border-gray-700/30"
+              >
+                <div className="flex items-center justify-between mb-6">
+                  <div>
+                    <div className="text-white text-xl font-medium">Accent Lighting</div>
+                    <div className="text-white/60 text-lg mt-1">65%</div>
+                  </div>
+                  <motion.div 
+                    initial={{ backgroundColor: "#4B5563" }}
+                    whileInView={{ backgroundColor: "linear-gradient(135deg, #FFD60A, #FFB000)" }}
+                    transition={{ duration: 0.7, delay: 1.4 }}
+                    viewport={{ once: true }}
+                    className="w-16 h-16 rounded-full flex items-center justify-center shadow-lg"
+                  >
+                    <div className="w-8 h-8 rounded-full bg-white shadow-md"></div>
+                  </motion.div>
+                </div>
+                <div className="h-3 bg-gray-700/60 rounded-full overflow-hidden">
+                  <motion.div 
+                    initial={{ width: "0%" }}
+                    whileInView={{ width: "65%" }}
+                    transition={{ duration: 1, delay: 1.6 }}
+                    viewport={{ once: true }}
+                    className="h-full bg-gradient-to-r from-amber-300 to-yellow-400 rounded-full"
+                  ></motion.div>
+                </div>
+              </motion.div>
+            </div>
+            
+            {/* Scene selector */}
+            <div className="absolute bottom-12 left-8 right-8">
+              <div className="bg-black/40 rounded-3xl p-6 backdrop-blur-xl border border-gray-700/30">
+                <div className="text-white/70 text-lg mb-2 font-light">Scene</div>
+                <div className="text-white text-2xl font-medium">Evening Warmth</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+</section>
     </main>
   )
 }
