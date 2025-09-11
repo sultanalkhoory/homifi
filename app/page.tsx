@@ -63,11 +63,11 @@ export default function Home() {
               <div className="px-6 pt-16 pb-6 h-full">
                 <div className="text-white text-3xl font-semibold mb-6">HomiFi</div>
                 
-                {/* Category Pills - Same Colors */}
+                {/* Category Pills - Proper Colors */}
                 <div className="flex space-x-2 mb-6">
-                  <div className="bg-yellow-500/30 rounded-full px-3 py-1.5 border border-yellow-400/30">
+                  <div className="bg-blue-500/30 rounded-full px-3 py-1.5 border border-blue-400/30">
                     <div className="flex items-center">
-                      <div className="text-yellow-300 text-xs mr-1.5">💡</div>
+                      <div className="text-blue-300 text-xs mr-1.5">💡</div>
                       <div>
                         <div className="text-white text-xs font-medium">Lights</div>
                         <div className="text-white/70 text-xs">3 On</div>
@@ -75,9 +75,9 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  <div className="bg-yellow-500/30 rounded-full px-3 py-1.5 border border-yellow-400/30">
+                  <div className="bg-green-500/30 rounded-full px-3 py-1.5 border border-green-400/30">
                     <div className="flex items-center">
-                      <div className="text-yellow-300 text-xs mr-1.5">🔒</div>
+                      <div className="text-green-300 text-xs mr-1.5">🔒</div>
                       <div>
                         <div className="text-white text-xs font-medium">Security</div>
                         <div className="text-white/70 text-xs">Disarmed</div>
@@ -135,15 +135,11 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Lighting Experience Section with Background */}
-      <section 
-        className="min-h-screen relative overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="ambient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23D4AF37;stop-opacity:0.1"/><stop offset="50%" style="stop-color:%23F4E4BC;stop-opacity:0.05"/><stop offset="100%" style="stop-color:%238B4513;stop-opacity:0.1"/></linearGradient></defs><rect width="1200" height="800" fill="url(%23ambient)"/></svg>')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center'
-        }}
-      >
+      {/* Lighting Experience Section with Ambient Background */}
+      <section className="min-h-screen bg-gradient-to-br from-amber-900/20 via-yellow-900/10 to-orange-900/20 relative overflow-hidden">
+        {/* Subtle ambient glow overlay */}
+        <div className="absolute inset-0 bg-gradient-radial from-yellow-500/5 via-transparent to-transparent"></div>
+        
         <div className="flex flex-col items-center justify-center min-h-screen px-8 relative z-10">
           
           {/* Text section */}
@@ -203,17 +199,17 @@ export default function Home() {
                 <div className="px-6 pt-16 pb-6 h-full">
                   <div className="text-white text-3xl font-semibold mb-6">Lights</div>
                   
-                  {/* Category Pills - Same Size as First iPhone */}
+                  {/* Category Pills - Lights Selected */}
                   <div className="flex space-x-2 mb-6">
                     <motion.div 
-                      initial={{ backgroundColor: "rgba(234, 179, 8, 0.3)" }}
+                      initial={{ backgroundColor: "rgba(59, 130, 246, 0.3)" }}
                       whileInView={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
                       transition={{ duration: 0.8, delay: 0.5 }}
                       viewport={{ once: true }}
-                      className="rounded-full px-3 py-1.5 border border-yellow-400/30"
+                      className="rounded-full px-3 py-1.5 border border-blue-400/30"
                     >
                       <div className="flex items-center">
-                        <div className="text-yellow-600 text-xs mr-1.5">💡</div>
+                        <div className="text-blue-600 text-xs mr-1.5">💡</div>
                         <div>
                           <motion.div 
                             initial={{ color: "rgb(255, 255, 255)" }}
@@ -237,9 +233,9 @@ export default function Home() {
                       </div>
                     </motion.div>
                     
-                    <div className="bg-yellow-500/30 rounded-full px-3 py-1.5 border border-yellow-400/30">
+                    <div className="bg-green-500/30 rounded-full px-3 py-1.5 border border-green-400/30">
                       <div className="flex items-center">
-                        <div className="text-yellow-300 text-xs mr-1.5">🔒</div>
+                        <div className="text-green-300 text-xs mr-1.5">🔒</div>
                         <div>
                           <div className="text-white text-xs font-medium">Security</div>
                           <div className="text-white/70 text-xs">Disarmed</div>
