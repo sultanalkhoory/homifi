@@ -23,59 +23,63 @@ export default function Home() {
           </p>
         </motion.div>
         
-        {/* iPhone Mockup */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.5, delay: 0.5 }}
-          className="mt-16 mb-16"
-        >
-          <div className="w-72 h-[580px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
-            <div className="w-full h-full bg-gray-900 rounded-[2rem] relative overflow-hidden">
-              {/* Notch */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-32 h-6 bg-black rounded-b-2xl z-10"></div>
-              
-              {/* Content */}
-              <div className="p-6 pt-12 h-full">
-                <div className="text-white text-2xl font-light mb-2">Home</div>
-                <div className="text-white/60 text-sm mb-8">Good evening</div>
-                
-                {/* Controls */}
-                <div className="space-y-4">
-                  <div className="bg-gray-800/50 rounded-2xl p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-white text-sm font-medium">Lighting</div>
-                        <div className="text-white/50 text-xs">8 lights off</div>
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-gray-700"></div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gray-800/50 rounded-2xl p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-white text-sm font-medium">Climate</div>
-                        <div className="text-white/50 text-xs">72° • Auto</div>
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-blue-500/70"></div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-gray-800/50 rounded-2xl p-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <div className="text-white text-sm font-medium">Security</div>
-                        <div className="text-white/50 text-xs">Armed • Home</div>
-                      </div>
-                      <div className="w-8 h-8 rounded-full bg-green-500/70"></div>
-                    </div>
-                  </div>
-                </div>
+        {/* iPhone Mockup with Dynamic Island */}
+<motion.div 
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 1.5, delay: 0.5 }}
+  className="mt-16 mb-16"
+>
+  <div className="w-72 h-[580px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
+    <div className="w-full h-full bg-gray-900 rounded-[2rem] relative overflow-hidden">
+      
+      {/* Dynamic Island */}
+      <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-black rounded-full z-10 flex items-center justify-center">
+        <div className="w-3 h-3 bg-gray-600 rounded-full mr-4"></div>
+        <div className="w-2 h-2 bg-gray-700 rounded-full"></div>
+      </div>
+      
+      {/* Content */}
+      <div className="p-6 pt-16 h-full">
+        <div className="text-white text-2xl font-light mb-2">Home</div>
+        <div className="text-white/60 text-sm mb-8">Good evening</div>
+        
+        {/* Controls */}
+        <div className="space-y-4">
+          <div className="bg-gray-800/50 rounded-2xl p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-white text-sm font-medium">Lighting</div>
+                <div className="text-white/50 text-xs">8 lights off</div>
               </div>
+              <div className="w-8 h-8 rounded-full bg-gray-700"></div>
             </div>
           </div>
-        </motion.div>
+          
+          <div className="bg-gray-800/50 rounded-2xl p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-white text-sm font-medium">Climate</div>
+                <div className="text-white/50 text-xs">72° • Auto</div>
+              </div>
+              <div className="w-8 h-8 rounded-full bg-blue-500/70"></div>
+            </div>
+          </div>
+          
+          <div className="bg-gray-800/50 rounded-2xl p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <div className="text-white text-sm font-medium">Security</div>
+                <div className="text-white/50 text-xs">Armed • Home</div>
+              </div>
+              <div className="w-8 h-8 rounded-full bg-green-500/70"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</motion.div>
         
         {/* Scroll Indicator */}
         <motion.div 
