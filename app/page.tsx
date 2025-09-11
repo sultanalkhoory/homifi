@@ -285,58 +285,98 @@ export default function Home() {
                   </div>
                   
                   {/* Room Lights */}
-                  <div>
-                    <div className="text-white text-lg font-semibold mb-3">Living Room</div>
-                    <div className="grid grid-cols-2 gap-3">
-                      <motion.div 
-                        initial={{ backgroundColor: "rgba(31, 41, 55, 0.6)" }}
-                        whileInView={{ backgroundColor: "rgba(34, 197, 94, 0.2)" }}
-                        transition={{ duration: 1, delay: 1 }}
-                        viewport={{ once: true }}
-                        className="rounded-2xl p-3 border border-gray-700/30"
-                      >
-                        <div className="text-yellow-400 text-xl mb-2">💡</div>
-                        <div className="text-white text-sm font-medium">Cove Light</div>
-                        <motion.div 
-                          initial={{ color: "rgba(255, 255, 255, 0.5)" }}
-                          whileInView={{ color: "rgba(255, 255, 255, 0.8)" }}
-                          transition={{ duration: 1, delay: 1 }}
-                          viewport={{ once: true }}
-                          className="text-xs"
-                        >
-                          On
-                        </motion.div>
-                      </motion.div>
-                      
-                      <motion.div 
-                        initial={{ backgroundColor: "rgba(31, 41, 55, 0.6)" }}
-                        whileInView={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
-                        transition={{ duration: 1, delay: 1.2 }}
-                        viewport={{ once: true }}
-                        className="rounded-2xl p-3 border border-gray-700/30"
-                      >
-                        <div className="text-yellow-600 text-xl mb-2">💡</div>
-                        <motion.div 
-                          initial={{ color: "rgb(255, 255, 255)" }}
-                          whileInView={{ color: "rgb(0, 0, 0)" }}
-                          transition={{ duration: 1, delay: 1.2 }}
-                          viewport={{ once: true }}
-                          className="text-sm font-medium"
-                        >
-                          Spotlight
-                        </motion.div>
-                        <motion.div 
-                          initial={{ color: "rgba(255, 255, 255, 0.5)" }}
-                          whileInView={{ color: "rgba(0, 0, 0, 0.6)" }}
-                          transition={{ duration: 1, delay: 1.2 }}
-                          viewport={{ once: true }}
-                          className="text-xs"
-                        >
-                          On
-                        </motion.div>
-                      </motion.div>
-                    </div>
-                  </div>
+<div>
+  <div className="text-white text-lg font-semibold mb-3">Living Room</div>
+  <div className="grid grid-cols-2 gap-3">
+    <motion.div 
+      initial={{ backgroundColor: "rgba(31, 41, 55, 0.6)" }}
+      whileInView={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+      transition={{ duration: 1, delay: 1 }}
+      viewport={{ once: true }}
+      className="rounded-2xl p-3 border border-gray-700/30"
+    >
+      <motion.div 
+        className="text-yellow-600 text-xl mb-2"
+        animate={{ 
+          textShadow: [
+            "0 0 5px rgba(255, 193, 7, 0.3)",
+            "0 0 10px rgba(255, 193, 7, 0.6)", 
+            "0 0 5px rgba(255, 193, 7, 0.3)"
+          ] 
+        }}
+        transition={{ 
+          duration: 2, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+      >
+        💡
+      </motion.div>
+      <motion.div 
+        initial={{ color: "rgb(255, 255, 255)" }}
+        whileInView={{ color: "rgb(0, 0, 0)" }}
+        transition={{ duration: 1, delay: 1 }}
+        viewport={{ once: true }}
+        className="text-sm font-medium"
+      >
+        Cove Light
+      </motion.div>
+      <motion.div 
+        initial={{ color: "rgba(255, 255, 255, 0.5)" }}
+        whileInView={{ color: "rgba(0, 0, 0, 0.6)" }}
+        transition={{ duration: 1, delay: 1 }}
+        viewport={{ once: true }}
+        className="text-xs"
+      >
+        On
+      </motion.div>
+    </motion.div>
+    
+    <motion.div 
+      initial={{ backgroundColor: "rgba(31, 41, 55, 0.6)" }}
+      whileInView={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
+      transition={{ duration: 1, delay: 1.2 }}
+      viewport={{ once: true }}
+      className="rounded-2xl p-3 border border-gray-700/30"
+    >
+      <motion.div 
+        className="text-yellow-600 text-xl mb-2"
+        animate={{ 
+          textShadow: [
+            "0 0 5px rgba(255, 193, 7, 0.3)",
+            "0 0 10px rgba(255, 193, 7, 0.6)", 
+            "0 0 5px rgba(255, 193, 7, 0.3)"
+          ] 
+        }}
+        transition={{ 
+          duration: 2, 
+          repeat: Infinity, 
+          ease: "easeInOut" 
+        }}
+      >
+        💡
+      </motion.div>
+      <motion.div 
+        initial={{ color: "rgb(255, 255, 255)" }}
+        whileInView={{ color: "rgb(0, 0, 0)" }}
+        transition={{ duration: 1, delay: 1.2 }}
+        viewport={{ once: true }}
+        className="text-sm font-medium"
+      >
+        Spotlight
+      </motion.div>
+      <motion.div 
+        initial={{ color: "rgba(255, 255, 255, 0.5)" }}
+        whileInView={{ color: "rgba(0, 0, 0, 0.6)" }}
+        transition={{ duration: 1, delay: 1.2 }}
+        viewport={{ once: true }}
+        className="text-xs"
+      >
+        On
+      </motion.div>
+    </motion.div>
+  </div>
+</div>
                 </div>
               </div>
             </div>
