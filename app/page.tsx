@@ -33,11 +33,11 @@ export default function Home() {
   <div className="w-72 h-[580px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
     <div className="w-full h-full bg-gray-900 rounded-[2rem] relative overflow-hidden">
       
-      {/* Dynamic Island */}
-      <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-8 bg-black rounded-full z-10 flex items-center justify-center">
-        <div className="w-3 h-3 bg-gray-600 rounded-full mr-4"></div>
-        <div className="w-2 h-2 bg-gray-700 rounded-full"></div>
-      </div>
+      {/* Dynamic Island - iPhone 17 Style */}
+<div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-32 h-9 bg-black rounded-full z-10 flex items-center justify-center px-3">
+  <div className="w-2 h-2 bg-gray-800 rounded-full mr-3 opacity-80"></div>
+  <div className="w-1 h-1 bg-gray-700 rounded-full opacity-60"></div>
+</div>
       
       {/* Content */}
       <div className="p-6 pt-16 h-full">
