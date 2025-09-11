@@ -39,14 +39,31 @@ export default function Home() {
                 <div className="w-1 h-1 bg-gray-700 rounded-full opacity-60"></div>
               </div>
               
-              {/* Status Bar Area */}
+              {/* Status Bar */}
               <div className="pt-12 px-6">
                 <div className="flex items-center justify-between mb-1">
                   <div className="text-white text-sm font-medium">1:17</div>
-                  <div className="flex items-center space-x-1">
-                    <div className="text-white/80 text-xs">●●● ●</div>
-                    <div className="text-white/80 text-xs">📶</div>
-                    <div className="text-white/80 text-xs">🔋</div>
+                  <div className="flex items-center space-x-2">
+                    {/* Signal */}
+                    <div className="flex items-end space-x-0.5">
+                      <div className="w-1 h-1 bg-white rounded-full"></div>
+                      <div className="w-1 h-1.5 bg-white rounded-full"></div>
+                      <div className="w-1 h-2 bg-white rounded-full"></div>
+                      <div className="w-1 h-2.5 bg-white rounded-full"></div>
+                    </div>
+                    {/* WiFi */}
+                    <svg className="w-4 h-3 text-white" viewBox="0 0 20 15" fill="currentColor">
+                      <path d="M2.5 8.5c3.5-3.5 9-3.5 12.5 0l-1.5 1.5c-2.5-2.5-6.5-2.5-9 0L2.5 8.5z"/>
+                      <path d="M5 11c2-2 5-2 7 0l-1.5 1.5c-1-1-2.5-1-3.5 0L5 11z"/>
+                      <circle cx="10" cy="14" r="1"/>
+                    </svg>
+                    {/* Battery */}
+                    <div className="flex items-center">
+                      <div className="w-6 h-3 border border-white rounded-sm relative">
+                        <div className="w-4 h-1.5 bg-green-400 rounded-sm absolute top-0.5 left-0.5"></div>
+                      </div>
+                      <div className="w-0.5 h-1.5 bg-white rounded-r ml-0.5"></div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -55,33 +72,23 @@ export default function Home() {
               <div className="px-6 pt-4 pb-6 h-full">
                 <div className="text-white text-3xl font-semibold mb-6">SK Home</div>
                 
-                {/* Category Pills */}
-                <div className="flex space-x-3 mb-6 overflow-x-auto">
-                  <div className="bg-blue-500/30 rounded-full px-4 py-2 border border-blue-400/30 flex-shrink-0">
+                {/* Category Pills - Smaller */}
+                <div className="flex space-x-2 mb-6">
+                  <div className="bg-yellow-500/30 rounded-full px-3 py-1.5 border border-yellow-400/30">
                     <div className="flex items-center">
-                      <div className="text-blue-300 text-xs mr-2">❄️</div>
+                      <div className="text-yellow-300 text-xs mr-1.5">💡</div>
                       <div>
-                        <div className="text-white text-sm font-medium">Climate</div>
-                        <div className="text-white/70 text-xs">21.5-22.5°</div>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="bg-yellow-500/30 rounded-full px-4 py-2 border border-yellow-400/30 flex-shrink-0">
-                    <div className="flex items-center">
-                      <div className="text-yellow-300 text-xs mr-2">💡</div>
-                      <div>
-                        <div className="text-white text-sm font-medium">Lights</div>
+                        <div className="text-white text-xs font-medium">Lights</div>
                         <div className="text-white/70 text-xs">3 On</div>
                       </div>
                     </div>
                   </div>
                   
-                  <div className="bg-green-500/30 rounded-full px-4 py-2 border border-green-400/30 flex-shrink-0">
+                  <div className="bg-green-500/30 rounded-full px-3 py-1.5 border border-green-400/30">
                     <div className="flex items-center">
-                      <div className="text-green-300 text-xs mr-2">🔒</div>
+                      <div className="text-green-300 text-xs mr-1.5">🔒</div>
                       <div>
-                        <div className="text-white text-sm font-medium">Security</div>
+                        <div className="text-white text-xs font-medium">Security</div>
                         <div className="text-white/70 text-xs">Disarmed</div>
                       </div>
                     </div>
@@ -178,10 +185,27 @@ export default function Home() {
                 <div className="pt-12 px-6">
                   <div className="flex items-center justify-between mb-1">
                     <div className="text-white text-sm font-medium">1:19</div>
-                    <div className="flex items-center space-x-1">
-                      <div className="text-white/80 text-xs">●●● ●</div>
-                      <div className="text-white/80 text-xs">📶</div>
-                      <div className="text-white/80 text-xs">🔋</div>
+                    <div className="flex items-center space-x-2">
+                      {/* Signal */}
+                      <div className="flex items-end space-x-0.5">
+                        <div className="w-1 h-1 bg-white rounded-full"></div>
+                        <div className="w-1 h-1.5 bg-white rounded-full"></div>
+                        <div className="w-1 h-2 bg-white rounded-full"></div>
+                        <div className="w-1 h-2.5 bg-white rounded-full"></div>
+                      </div>
+                      {/* WiFi */}
+                      <svg className="w-4 h-3 text-white" viewBox="0 0 20 15" fill="currentColor">
+                        <path d="M2.5 8.5c3.5-3.5 9-3.5 12.5 0l-1.5 1.5c-2.5-2.5-6.5-2.5-9 0L2.5 8.5z"/>
+                        <path d="M5 11c2-2 5-2 7 0l-1.5 1.5c-1-1-2.5-1-3.5 0L5 11z"/>
+                        <circle cx="10" cy="14" r="1"/>
+                      </svg>
+                      {/* Battery */}
+                      <div className="flex items-center">
+                        <div className="w-6 h-3 border border-white rounded-sm relative">
+                          <div className="w-4 h-1.5 bg-green-400 rounded-sm absolute top-0.5 left-0.5"></div>
+                        </div>
+                        <div className="w-0.5 h-1.5 bg-white rounded-r ml-0.5"></div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -191,33 +215,23 @@ export default function Home() {
                   <div className="text-white text-3xl font-semibold mb-6">Lights</div>
                   
                   {/* Category Pills - Lights Selected */}
-                  <div className="flex space-x-3 mb-6 overflow-x-auto">
-                    <div className="bg-blue-500/30 rounded-full px-4 py-2 border border-blue-400/30 flex-shrink-0">
-                      <div className="flex items-center">
-                        <div className="text-blue-300 text-xs mr-2">❄️</div>
-                        <div>
-                          <div className="text-white text-sm font-medium">Climate</div>
-                          <div className="text-white/70 text-xs">21.5-23.0°</div>
-                        </div>
-                      </div>
-                    </div>
-                    
+                  <div className="flex space-x-2 mb-6">
                     <motion.div 
                       initial={{ backgroundColor: "rgba(234, 179, 8, 0.3)" }}
                       whileInView={{ backgroundColor: "rgba(255, 255, 255, 0.9)" }}
                       transition={{ duration: 0.8, delay: 0.5 }}
                       viewport={{ once: true }}
-                      className="rounded-full px-4 py-2 border border-yellow-400/30 flex-shrink-0"
+                      className="rounded-full px-3 py-1.5 border border-yellow-400/30"
                     >
                       <div className="flex items-center">
-                        <div className="text-yellow-600 text-xs mr-2">💡</div>
+                        <div className="text-yellow-600 text-xs mr-1.5">💡</div>
                         <div>
                           <motion.div 
                             initial={{ color: "rgb(255, 255, 255)" }}
                             whileInView={{ color: "rgb(0, 0, 0)" }}
                             transition={{ duration: 0.8, delay: 0.5 }}
                             viewport={{ once: true }}
-                            className="text-sm font-medium"
+                            className="text-xs font-medium"
                           >
                             Lights
                           </motion.div>
@@ -234,43 +248,31 @@ export default function Home() {
                       </div>
                     </motion.div>
                     
-                    <div className="bg-green-500/30 rounded-full px-4 py-2 border border-green-400/30 flex-shrink-0">
+                    <div className="bg-green-500/30 rounded-full px-3 py-1.5 border border-green-400/30">
                       <div className="flex items-center">
-                        <div className="text-green-300 text-xs mr-2">🔒</div>
+                        <div className="text-green-300 text-xs mr-1.5">🔒</div>
                         <div>
-                          <div className="text-white text-sm font-medium">Security</div>
+                          <div className="text-white text-xs font-medium">Security</div>
                           <div className="text-white/70 text-xs">Disarmed</div>
                         </div>
                       </div>
                     </div>
                   </div>
                   
-                  {/* 3 Lights Summary */}
-                  <motion.div 
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.8 }}
-                    viewport={{ once: true }}
-                    className="flex items-center mb-6"
-                  >
-                    <div className="text-white text-2xl mr-3">💡</div>
-                    <div>
-                      <div className="text-white text-lg font-semibold">3 Lights</div>
-                      <div className="text-white/60 text-sm">On</div>
-                    </div>
-                  </motion.div>
-                  
                   {/* Scenes */}
-                  <div className="bg-gray-900/60 rounded-2xl p-4 border border-gray-700/30 mb-6">
-                    <div className="flex items-center">
-                      <div className="text-2xl mr-3">🍿</div>
-                      <div className="text-white text-base font-medium">Movie Night</div>
+                  <div className="mb-6">
+                    <div className="text-white text-lg font-semibold mb-3">Scenes</div>
+                    <div className="bg-gray-900/60 rounded-2xl p-4 border border-gray-700/30">
+                      <div className="flex items-center">
+                        <div className="text-2xl mr-3">🍿</div>
+                        <div className="text-white text-base font-medium">Movie Night</div>
+                      </div>
                     </div>
                   </div>
                   
                   {/* Room Lights */}
                   <div>
-                    <div className="text-white text-lg font-semibold mb-3">Upstairs Living Room</div>
+                    <div className="text-white text-lg font-semibold mb-3">Living Room</div>
                     <div className="grid grid-cols-2 gap-3">
                       <motion.div 
                         initial={{ backgroundColor: "rgba(31, 41, 55, 0.6)" }}
@@ -307,7 +309,7 @@ export default function Home() {
                           viewport={{ once: true }}
                           className="text-sm font-medium"
                         >
-                          Cove Light
+                          Spotlight
                         </motion.div>
                         <motion.div 
                           initial={{ color: "rgba(255, 255, 255, 0.5)" }}
