@@ -110,7 +110,7 @@ export default function Home() {
         <div 
           className="absolute inset-0 z-0"
           style={{
-            backgroundImage: `url('/room-dark.png')`,
+            backgroundImage: `url('/Curtains-Closed-Lights-Off.png')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat'
