@@ -543,9 +543,9 @@ export default function Home() {
                         whileHover={{ scale: 1.02, y: -1 }}
                         whileTap={{ scale: 0.98 }}
                         animate={{
-                          backgroundColor: !curtainsClosed ? "rgba(31, 41, 55, 0.6)" : "rgba(255, 255, 255, 0.95)",
-                          borderColor: !curtainsClosed ? "rgba(75, 85, 99, 0.3)" : "rgba(255, 179, 102, 0.3)",
-                          boxShadow: !curtainsClosed ? 
+                          backgroundColor: curtainsClosed ? "rgba(31, 41, 55, 0.6)" : "rgba(255, 255, 255, 0.95)",
+                          borderColor: curtainsClosed ? "rgba(75, 85, 99, 0.3)" : "rgba(255, 179, 102, 0.3)",
+                          boxShadow: curtainsClosed ? 
                             "0 1px 3px rgba(0, 0, 0, 0.1)" :
                             "0 2px 10px rgba(255, 179, 102, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1)"
                         }}
@@ -554,7 +554,7 @@ export default function Home() {
                         <motion.div 
                           className="text-base mb-1.5"
                           animate={{
-                            color: !curtainsClosed ? "#a5b4fc" : "#d97706"
+                            color: curtainsClosed ? "#a5b4fc" : "#d97706"
                           }}
                           transition={{ duration: 1, delay: 0.2 }}
                         >
@@ -563,20 +563,20 @@ export default function Home() {
                         <motion.div 
                           className="text-xs font-medium"
                           animate={{
-                            color: !curtainsClosed ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"
+                            color: curtainsClosed ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"
                           }}
                           transition={{ duration: 1, delay: 0.2 }}
                         >
-                          Side Window
+                          Blackout Curtain
                         </motion.div>
                         <motion.div 
                           className="text-xs"
                           animate={{
-                            color: !curtainsClosed ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.6)"
+                            color: curtainsClosed ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.6)"
                           }}
                           transition={{ duration: 1, delay: 0.2 }}
                         >
-                          {!curtainsClosed ? "Closed" : "Open"}
+                          {curtainsClosed ? "Closed" : "Open"}
                         </motion.div>
                       </motion.div>
                     </div>
