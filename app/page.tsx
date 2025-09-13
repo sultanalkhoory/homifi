@@ -4,70 +4,39 @@ import { motion, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
-  // All state declarations - properly declared
+  // All state declarations
   const [lightsOn, setLightsOn] = useState(false)
   const [dashboardInView, setDashboardInView] = useState(false)
   const [curtainsInView, setCurtainsInView] = useState(false)
   const [curtainsClosed, setCurtainsClosed] = useState(false)
   
-  // Enhanced spring transitions for cinematic feel
+  // Spring transitions
   const backgroundProgress = useSpring(0, { 
-    stiffness: 80,   // Slightly slower for more drama
-    damping: 20,     // Smoother motion
-    mass: 1          // More weight for cinematic feel
-  })
-  
-  const ambientGlow = useSpring(0, {
-    stiffness: 60,
-    damping: 25,
-    mass: 1.2
-  })
-  
-  const warmthProgress = useSpring(0, {
-    stiffness: 50,
-    damping: 30,
-    mass: 1.5
+    stiffness: 80,
+    damping: 20,
+    mass: 1
   })
 
-  // Curtains privacy effect
-  const privacyDimming = useSpring(0, {
-    stiffness: 70,
-    damping: 25,
-    mass: 1.3
-  })
-
-  const intimateGlow = useSpring(0, {
-    stiffness: 60,
-    damping: 30,
-    mass: 1.4
-  })
-
-  // Auto-trigger lights when dashboard appears - Enhanced cinematic sequence
+  // Auto-trigger lights when dashboard appears
   useEffect(() => {
     if (dashboardInView && !lightsOn) {
       const timer = setTimeout(() => {
         setLightsOn(true)
-        // Staggered lighting sequence for drama
         backgroundProgress.set(1)
-        setTimeout(() => ambientGlow.set(1), 200)
-        setTimeout(() => warmthProgress.set(1), 400)
-      }, 1200) // Slightly longer delay for anticipation
+      }, 1200)
       return () => clearTimeout(timer)
     }
-  }, [dashboardInView, lightsOn, backgroundProgress, ambientGlow, warmthProgress])
+  }, [dashboardInView, lightsOn, backgroundProgress])
 
   // Auto-trigger curtains when section appears
   useEffect(() => {
     if (curtainsInView && !curtainsClosed) {
       const timer = setTimeout(() => {
         setCurtainsClosed(true)
-        // Staggered privacy effects
-        privacyDimming.set(1)
-        setTimeout(() => intimateGlow.set(1), 300)
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [curtainsInView, curtainsClosed, privacyDimming, intimateGlow])
+  }, [curtainsInView, curtainsClosed])
 
   // Handle manual light toggle
   const toggleLights = () => {
@@ -80,12 +49,11 @@ export default function Home() {
   const toggleCurtains = () => {
     const newState = !curtainsClosed
     setCurtainsClosed(newState)
-    privacyDimming.set(newState ? 1 : 0)
   }
 
   return (
     <main className="bg-black text-white">
-      {/* Hero Section - Dark Room Only */}
+      {/* Hero Section */}
       <section className="min-h-screen relative overflow-hidden">
         <div 
           className="absolute inset-0 z-0"
@@ -143,87 +111,27 @@ export default function Home() {
         onViewportEnter={() => setDashboardInView(true)}
         viewport={{ once: true, amount: 0.3 }}
       >
-        {/* Enhanced Multi-Layer Background System */}
+        {/* Background with Real Room Images */}
         <div className="absolute inset-0 z-0">
-          {/* Base dark room */}
+          {/* Base room state - curtains closed, lights off */}
           <div 
             className="absolute inset-0"
             style={{
-              backgroundImage: `url('/room-dark.png')`,
+              backgroundImage: `url('/Curtains-Closed-Lights-Off.png')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
           />
           
-          {/* Primary lighting - main room illumination */}
+          {/* Lights on overlay - curtains still closed */}
           <motion.div 
             className="absolute inset-0"
             style={{
-              backgroundImage: `url('/room-lit.png')`,
+              backgroundImage: `url('/Curtains-Closed-Lights-On.png')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              opacity: backgroundProgress
-            }}
-          />
-          
-          {/* Ambient glow layer - ceiling and indirect lighting */}
-          <motion.div 
-            className="absolute inset-0"
-            style={{
-              background: `
-                radial-gradient(ellipse 80% 30% at 50% 20%, rgba(255, 248, 220, 0.15) 0%, transparent 70%),
-                radial-gradient(ellipse 60% 40% at 25% 60%, rgba(255, 193, 7, 0.08) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 40% at 75% 60%, rgba(255, 193, 7, 0.06) 0%, transparent 60%)
-              `,
-              opacity: ambientGlow
-            }}
-          />
-          
-          {/* Warmth and atmosphere layer */}
-          <motion.div 
-            className="absolute inset-0"
-            style={{
-              background: `
-                linear-gradient(180deg, 
-                  rgba(255, 239, 186, 0.03) 0%, 
-                  rgba(255, 224, 130, 0.05) 30%,
-                  rgba(255, 193, 7, 0.04) 70%,
-                  rgba(251, 146, 60, 0.02) 100%
-                )
-              `,
-              opacity: warmthProgress
-            }}
-          />
-          
-          {/* Dynamic breathing glow - Enhanced */}
-          <motion.div 
-            className="absolute inset-0"
-            style={{
-              background: `
-                radial-gradient(ellipse 70% 35% at 50% 25%, rgba(255, 193, 7, 0.04) 0%, transparent 70%),
-                radial-gradient(ellipse 90% 25% at 50% 80%, rgba(255, 224, 130, 0.02) 0%, transparent 60%)
-              `,
-            }}
-            animate={lightsOn ? {
-              opacity: [0.3, 0.7, 0.3]
-            } : { opacity: 0 }}
-            transition={{
-              duration: 5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-          />
-          
-          {/* Spotlight effects for individual lamp simulation */}
-          <motion.div 
-            className="absolute inset-0"
-            style={{
-              background: `
-                radial-gradient(circle 200px at 30% 70%, rgba(255, 193, 7, 0.08) 0%, transparent 50%),
-                radial-gradient(circle 150px at 70% 65%, rgba(255, 224, 130, 0.06) 0%, transparent 50%)
-              `,
               opacity: backgroundProgress
             }}
           />
@@ -247,7 +155,7 @@ export default function Home() {
             </p>
           </motion.div>
           
-          {/* Enhanced iPhone with better hover states */}
+          {/* iPhone */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.8, y: 40 }}
             whileInView={{ opacity: 1, scale: 1, y: 0 }}
@@ -286,7 +194,7 @@ export default function Home() {
                 <div className="px-5 pt-12 pb-5 h-full">
                   <div className="text-white text-2xl font-semibold mb-4">Lights</div>
                   
-                  {/* Enhanced Category Pills with better interactions */}
+                  {/* Category Pills */}
                   <div className="flex space-x-1.5 mb-5">
                     <motion.div 
                       className="rounded-full px-2.5 py-1 border cursor-pointer"
@@ -306,21 +214,9 @@ export default function Home() {
                         <motion.div 
                           className="text-xs mr-1"
                           animate={{
-                            color: lightsOn ? "#d97706" : "#93c5fd",
-                            textShadow: lightsOn ? [
-                              "0 0 5px rgba(37, 99, 235, 0.3)",
-                              "0 0 10px rgba(37, 99, 235, 0.6)", 
-                              "0 0 5px rgba(37, 99, 235, 0.3)"
-                            ] : "none"
+                            color: lightsOn ? "#d97706" : "#93c5fd"
                           }}
-                          transition={{
-                            color: { duration: 0.8 },
-                            textShadow: {
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }
-                          }}
+                          transition={{ duration: 0.8 }}
                         >
                           💡
                         </motion.div>
@@ -378,21 +274,9 @@ export default function Home() {
                         <motion.div 
                           className="text-base mb-1.5"
                           animate={{
-                            color: lightsOn ? "#d97706" : "#fbbf24",
-                            textShadow: lightsOn ? [
-                              "0 0 5px rgba(255, 193, 7, 0.3)",
-                              "0 0 10px rgba(255, 193, 7, 0.6)", 
-                              "0 0 5px rgba(255, 193, 7, 0.3)"
-                            ] : "none"
+                            color: lightsOn ? "#d97706" : "#fbbf24"
                           }}
-                          transition={{
-                            color: { duration: 1 },
-                            textShadow: {
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }
-                          }}
+                          transition={{ duration: 1 }}
                         >
                           💡
                         </motion.div>
@@ -432,21 +316,9 @@ export default function Home() {
                         <motion.div 
                           className="text-base mb-1.5"
                           animate={{
-                            color: lightsOn ? "#d97706" : "#fbbf24",
-                            textShadow: lightsOn ? [
-                              "0 0 5px rgba(255, 193, 7, 0.3)",
-                              "0 0 10px rgba(255, 193, 7, 0.6)", 
-                              "0 0 5px rgba(255, 193, 7, 0.3)"
-                            ] : "none"
+                            color: lightsOn ? "#d97706" : "#fbbf24"
                           }}
-                          transition={{
-                            color: { duration: 1, delay: 0.2 },
-                            textShadow: {
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }
-                          }}
+                          transition={{ duration: 1, delay: 0.2 }}
                         >
                           💡
                         </motion.div>
@@ -484,77 +356,32 @@ export default function Home() {
         onViewportEnter={() => setCurtainsInView(true)}
         viewport={{ once: true, amount: 0.3 }}
       >
-        {/* Enhanced Background with Privacy Effects */}
+        {/* Background with Real Room Images */}
         <div className="absolute inset-0 z-0">
-          {/* Base dark room */}
-          <div 
+          {/* Base state - curtains closed (current light state) */}
+          <motion.div 
             className="absolute inset-0"
             style={{
-              backgroundImage: `url('/room-dark.png')`,
+              backgroundImage: lightsOn ? 
+                `url('/Curtains-Closed-Lights-On.png')` : 
+                `url('/Curtains-Closed-Lights-Off.png')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
           />
           
-          {/* Lit room base */}
+          {/* Curtains open overlay */}
           <motion.div 
             className="absolute inset-0"
             style={{
-              backgroundImage: `url('/room-lit.png')`,
+              backgroundImage: lightsOn ? 
+                `url('/Curtains-Open-Lights-On.png')` : 
+                `url('/Curtains-Open-Lights-Off.png')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
-              opacity: 0.9 // Always slightly lit for this section
-            }}
-          />
-          
-          {/* Privacy dimming overlay - creates intimate atmosphere */}
-          <motion.div 
-            className="absolute inset-0"
-            style={{
-              background: `
-                linear-gradient(180deg, 
-                  rgba(0, 0, 0, 0.15) 0%, 
-                  rgba(0, 0, 0, 0.25) 50%,
-                  rgba(0, 0, 0, 0.15) 100%
-                ),
-                radial-gradient(ellipse 60% 80% at 50% 50%, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.3) 100%)
-              `,
-              opacity: privacyDimming
-            }}
-          />
-          
-          {/* Intimate warm glow - cozy curtains-closed feeling */}
-          <motion.div 
-            className="absolute inset-0"
-            style={{
-              background: `
-                radial-gradient(ellipse 70% 40% at 50% 60%, rgba(255, 179, 102, 0.08) 0%, transparent 70%),
-                linear-gradient(180deg, 
-                  transparent 0%, 
-                  rgba(255, 193, 107, 0.04) 40%,
-                  rgba(255, 155, 85, 0.06) 80%,
-                  transparent 100%
-                )
-              `,
-              opacity: intimateGlow
-            }}
-          />
-          
-          {/* Soft ambient breathing for privacy mode */}
-          <motion.div 
-            className="absolute inset-0"
-            style={{
-              background: `radial-gradient(ellipse 50% 60% at 50% 50%, rgba(255, 179, 102, 0.03) 0%, transparent 60%)`,
-            }}
-            animate={curtainsClosed ? {
-              opacity: [0.2, 0.4, 0.2]
-            } : { opacity: 0 }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
+              opacity: curtainsClosed ? 0 : 1
             }}
           />
         </div>
@@ -636,21 +463,9 @@ export default function Home() {
                         <motion.div 
                           className="text-xs mr-1"
                           animate={{
-                            color: curtainsClosed ? "#d97706" : "#a5b4fc",
-                            textShadow: curtainsClosed ? [
-                              "0 0 5px rgba(255, 179, 102, 0.3)",
-                              "0 0 10px rgba(255, 179, 102, 0.6)", 
-                              "0 0 5px rgba(255, 179, 102, 0.3)"
-                            ] : "none"
+                            color: curtainsClosed ? "#d97706" : "#a5b4fc"
                           }}
-                          transition={{
-                            color: { duration: 0.8 },
-                            textShadow: {
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }
-                          }}
+                          transition={{ duration: 0.8 }}
                         >
                           🏠
                         </motion.div>
@@ -682,7 +497,7 @@ export default function Home() {
                         <div className="text-amber-300 text-xs mr-1">💡</div>
                         <div>
                           <div className="text-white text-xs font-medium">Lights</div>
-                          <div className="text-white/70 text-xs">3 On</div>
+                          <div className="text-white/70 text-xs">{lightsOn ? "3 On" : "Off"}</div>
                         </div>
                       </div>
                     </div>
@@ -697,39 +512,27 @@ export default function Home() {
                         whileHover={{ scale: 1.02, y: -1 }}
                         whileTap={{ scale: 0.98 }}
                         animate={{
-                          backgroundColor: curtainsClosed ? "rgba(255, 255, 255, 0.95)" : "rgba(31, 41, 55, 0.6)",
-                          borderColor: curtainsClosed ? "rgba(255, 179, 102, 0.3)" : "rgba(75, 85, 99, 0.3)",
+                          backgroundColor: curtainsClosed ? "rgba(31, 41, 55, 0.6)" : "rgba(255, 255, 255, 0.95)",
+                          borderColor: curtainsClosed ? "rgba(75, 85, 99, 0.3)" : "rgba(255, 179, 102, 0.3)",
                           boxShadow: curtainsClosed ? 
-                            "0 2px 10px rgba(255, 179, 102, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1)" :
-                            "0 1px 3px rgba(0, 0, 0, 0.1)"
+                            "0 1px 3px rgba(0, 0, 0, 0.1)" :
+                            "0 2px 10px rgba(255, 179, 102, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1)"
                         }}
                         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <motion.div 
                           className="text-base mb-1.5"
                           animate={{
-                            color: curtainsClosed ? "#d97706" : "#a5b4fc",
-                            textShadow: curtainsClosed ? [
-                              "0 0 5px rgba(255, 179, 102, 0.3)",
-                              "0 0 10px rgba(255, 179, 102, 0.6)", 
-                              "0 0 5px rgba(255, 179, 102, 0.3)"
-                            ] : "none"
+                            color: curtainsClosed ? "#a5b4fc" : "#d97706"
                           }}
-                          transition={{
-                            color: { duration: 1 },
-                            textShadow: {
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }
-                          }}
+                          transition={{ duration: 1 }}
                         >
                           🪟
                         </motion.div>
                         <motion.div 
                           className="text-xs font-medium"
                           animate={{
-                            color: curtainsClosed ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
+                            color: curtainsClosed ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"
                           }}
                           transition={{ duration: 1 }}
                         >
@@ -738,7 +541,7 @@ export default function Home() {
                         <motion.div 
                           className="text-xs"
                           animate={{
-                            color: curtainsClosed ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.5)"
+                            color: curtainsClosed ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.6)"
                           }}
                           transition={{ duration: 1 }}
                         >
@@ -751,39 +554,27 @@ export default function Home() {
                         whileHover={{ scale: 1.02, y: -1 }}
                         whileTap={{ scale: 0.98 }}
                         animate={{
-                          backgroundColor: curtainsClosed ? "rgba(255, 255, 255, 0.95)" : "rgba(31, 41, 55, 0.6)",
-                          borderColor: curtainsClosed ? "rgba(255, 179, 102, 0.3)" : "rgba(75, 85, 99, 0.3)",
+                          backgroundColor: curtainsClosed ? "rgba(31, 41, 55, 0.6)" : "rgba(255, 255, 255, 0.95)",
+                          borderColor: curtainsClosed ? "rgba(75, 85, 99, 0.3)" : "rgba(255, 179, 102, 0.3)",
                           boxShadow: curtainsClosed ? 
-                            "0 2px 10px rgba(255, 179, 102, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1)" :
-                            "0 1px 3px rgba(0, 0, 0, 0.1)"
+                            "0 1px 3px rgba(0, 0, 0, 0.1)" :
+                            "0 2px 10px rgba(255, 179, 102, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1)"
                         }}
                         transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
                       >
                         <motion.div 
                           className="text-base mb-1.5"
                           animate={{
-                            color: curtainsClosed ? "#d97706" : "#a5b4fc",
-                            textShadow: curtainsClosed ? [
-                              "0 0 5px rgba(255, 179, 102, 0.3)",
-                              "0 0 10px rgba(255, 179, 102, 0.6)", 
-                              "0 0 5px rgba(255, 179, 102, 0.3)"
-                            ] : "none"
+                            color: curtainsClosed ? "#a5b4fc" : "#d97706"
                           }}
-                          transition={{
-                            color: { duration: 1, delay: 0.2 },
-                            textShadow: {
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }
-                          }}
+                          transition={{ duration: 1, delay: 0.2 }}
                         >
                           🪟
                         </motion.div>
                         <motion.div 
                           className="text-xs font-medium"
                           animate={{
-                            color: curtainsClosed ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
+                            color: curtainsClosed ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"
                           }}
                           transition={{ duration: 1, delay: 0.2 }}
                         >
@@ -792,7 +583,7 @@ export default function Home() {
                         <motion.div 
                           className="text-xs"
                           animate={{
-                            color: curtainsClosed ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.5)"
+                            color: curtainsClosed ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.6)"
                           }}
                           transition={{ duration: 1, delay: 0.2 }}
                         >
