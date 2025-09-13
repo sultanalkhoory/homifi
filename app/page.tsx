@@ -69,38 +69,18 @@ export default function Home() {
     }
   }, [curtainsInView, curtainsClosed, privacyDimming, intimateGlow])
 
-  // Handle manual light toggle - Enhanced with all layers
+  // Handle manual light toggle
   const toggleLights = () => {
     const newState = !lightsOn
     setLightsOn(newState)
-    
-    if (newState) {
-      // Lights on - staggered sequence
-      backgroundProgress.set(1)
-      setTimeout(() => ambientGlow.set(1), 150)
-      setTimeout(() => warmthProgress.set(1), 300)
-    } else {
-      // Lights off - reverse sequence
-      warmthProgress.set(0)
-      setTimeout(() => ambientGlow.set(0), 100)
-      setTimeout(() => backgroundProgress.set(0), 200)
-    }
+    backgroundProgress.set(newState ? 1 : 0)
   }
 
   // Handle manual curtain toggle
   const toggleCurtains = () => {
     const newState = !curtainsClosed
     setCurtainsClosed(newState)
-    
-    if (newState) {
-      // Curtains closing - privacy mode
-      privacyDimming.set(1)
-      setTimeout(() => intimateGlow.set(1), 200)
-    } else {
-      // Curtains opening - bright mode
-      intimateGlow.set(0)
-      setTimeout(() => privacyDimming.set(0), 150)
-    }
+    privacyDimming.set(newState ? 1 : 0)
   }
 
   return (
