@@ -4,8 +4,11 @@ import { motion, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
+  // All state declarations - properly declared
   const [lightsOn, setLightsOn] = useState(false)
   const [dashboardInView, setDashboardInView] = useState(false)
+  const [curtainsInView, setCurtainsInView] = useState(false)
+  const [curtainsClosed, setCurtainsClosed] = useState(false)
   
   // Enhanced spring transitions for cinematic feel
   const backgroundProgress = useSpring(0, { 
@@ -26,6 +29,19 @@ export default function Home() {
     mass: 1.5
   })
 
+  // Curtains privacy effect
+  const privacyDimming = useSpring(0, {
+    stiffness: 70,
+    damping: 25,
+    mass: 1.3
+  })
+
+  const intimateGlow = useSpring(0, {
+    stiffness: 60,
+    damping: 30,
+    mass: 1.4
+  })
+
   // Auto-trigger lights when dashboard appears - Enhanced cinematic sequence
   useEffect(() => {
     if (dashboardInView && !lightsOn) {
@@ -39,6 +55,19 @@ export default function Home() {
       return () => clearTimeout(timer)
     }
   }, [dashboardInView, lightsOn, backgroundProgress, ambientGlow, warmthProgress])
+
+  // Auto-trigger curtains when section appears
+  useEffect(() => {
+    if (curtainsInView && !curtainsClosed) {
+      const timer = setTimeout(() => {
+        setCurtainsClosed(true)
+        // Staggered privacy effects
+        privacyDimming.set(1)
+        setTimeout(() => intimateGlow.set(1), 300)
+      }, 1000)
+      return () => clearTimeout(timer)
+    }
+  }, [curtainsInView, curtainsClosed, privacyDimming, intimateGlow])
 
   // Handle manual light toggle - Enhanced with all layers
   const toggleLights = () => {
@@ -55,6 +84,22 @@ export default function Home() {
       warmthProgress.set(0)
       setTimeout(() => ambientGlow.set(0), 100)
       setTimeout(() => backgroundProgress.set(0), 200)
+    }
+  }
+
+  // Handle manual curtain toggle
+  const toggleCurtains = () => {
+    const newState = !curtainsClosed
+    setCurtainsClosed(newState)
+    
+    if (newState) {
+      // Curtains closing - privacy mode
+      privacyDimming.set(1)
+      setTimeout(() => intimateGlow.set(1), 200)
+    } else {
+      // Curtains opening - bright mode
+      intimateGlow.set(0)
+      setTimeout(() => privacyDimming.set(0), 150)
     }
   }
 
