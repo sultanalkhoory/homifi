@@ -59,7 +59,6 @@ export default function Home() {
 
   return (
     <div className="text-white">
-      {/* Hero Section - Clean background, room image visible */}
       <section className="min-h-screen relative overflow-hidden">
         <div 
           className="absolute inset-0 z-0"
@@ -78,23 +77,9 @@ export default function Home() {
             transition={{ duration: 1.2, delay: 0.5 }}
             className="text-center mb-16"
           >
-            <motion.h1 
-              className="text-6xl md:text-8xl font-thin mb-8 text-white"
-              animate={{ 
-                textShadow: [
-                  "0 0 20px rgba(255, 255, 255, 0.1)",
-                  "0 0 30px rgba(255, 255, 255, 0.2)", 
-                  "0 0 20px rgba(255, 255, 255, 0.1)"
-                ] 
-              }}
-              transition={{ 
-                duration: 3, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }}
-            >
+            <h1 className="text-6xl md:text-8xl font-thin mb-8 text-white">
               HomiFi
-            </motion.h1>
+            </h1>
             <p className="text-2xl md:text-3xl text-white/90 font-light max-w-3xl">
               Your home. Intelligently connected.
             </p>
@@ -111,7 +96,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 2: Lights - iPhone LEFT, Clean background */}
       <motion.section 
         className="min-h-screen relative overflow-hidden"
         onViewportEnter={() => setDashboardInView(true)}
@@ -166,36 +150,25 @@ export default function Home() {
             viewport={{ once: true }}
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+            <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
               <div 
                 className="w-full h-full rounded-[2rem] relative overflow-hidden"
                 style={{
                   background: lightsOn 
-                    ? 'linear-gradient(135deg, #f1e2c6 0%, #d8b98b 100%)' // Evening cozy when lights on
-                    : 'linear-gradient(135deg, #e8dfd5 0%, #f5f1eb 100%)'  // Warm neutral when lights off
+                    ? 'linear-gradient(135deg, #f1e2c6 0%, #d8b98b 100%)' 
+                    : 'linear-gradient(135deg, #e8dfd5 0%, #f5f1eb 100%)'
                 }}
               >
                 
-                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10 flex items-center justify-center px-2">
-                  <div className="w-1.5 h-1.5 bg-gray-800 rounded-full mr-1.5 opacity-80"></div>
-                  <div className="w-1 h-1 bg-gray-700 rounded-full opacity-60"></div>
+                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10">
+                  <div className="flex items-center justify-center h-full px-2">
+                    <div className="w-1.5 h-1.5 bg-gray-800 rounded-full mr-1.5"></div>
+                    <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
+                  </div>
                 </div>
                 
                 <div className="absolute top-2 left-4">
                   <div className="text-gray-800 text-xs font-medium">1:19</div>
-                </div>
-                <div className="absolute top-2 right-4 flex items-center space-x-1.5">
-                  <svg className="w-3 h-2 text-gray-800" viewBox="0 0 20 15" fill="currentColor">
-                    <path d="M2.5 8.5c3.5-3.5 9-3.5 12.5 0l-1.5 1.5c-2.5-2.5-6.5-2.5-9 0L2.5 8.5z"/>
-                    <path d="M5 11c2-2 5-2 7 0l-1.5 1.5c-1-1-2.5-1-3.5 0L5 11z"/>
-                    <circle cx="10" cy="14" r="1"/>
-                  </svg>
-                  <div className="flex items-center">
-                    <div className="w-5 h-2.5 border border-gray-800 rounded-sm relative">
-                      <div className="w-3 h-1 bg-green-400 rounded-sm absolute top-0.5 left-0.5"></div>
-                    </div>
-                    <div className="w-0.5 h-1 bg-gray-800 rounded-r ml-0.5"></div>
-                  </div>
                 </div>
                 
                 <div className="px-5 pt-12 pb-5 h-full">
@@ -209,143 +182,34 @@ export default function Home() {
                       whileTap={{ scale: 0.95 }}
                       animate={{
                         backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.95)" : "rgba(59, 130, 246, 0.3)",
-                        borderColor: lightsOn ? "rgba(255, 255, 255, 0.4)" : "rgba(96, 165, 250, 0.4)",
-                        boxShadow: lightsOn ? 
-                          "0 0 20px rgba(255, 193, 7, 0.3), 0 2px 10px rgba(0, 0, 0, 0.1)" : 
-                          "0 0 0px rgba(255, 193, 7, 0)"
+                        borderColor: lightsOn ? "rgba(255, 255, 255, 0.4)" : "rgba(96, 165, 250, 0.4)"
                       }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.6 }}
                     >
                       <div className="flex items-center">
-                        <motion.div 
-                          className="text-xs mr-1"
-                          animate={{
-                            color: lightsOn ? "#d97706" : "#93c5fd"
-                          }}
-                          transition={{ duration: 0.8 }}
-                        >
-                          💡
-                        </motion.div>
+                        <div className="text-xs mr-1">💡</div>
                         <div>
-                          <motion.div 
-                            className="text-xs font-medium"
-                            animate={{
-                              color: lightsOn ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
-                            }}
-                            transition={{ duration: 0.8 }}
-                          >
-                            Lights
-                          </motion.div>
-                          <motion.div 
-                            className="text-xs"
-                            animate={{
-                              color: lightsOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.7)"
-                            }}
-                            transition={{ duration: 0.8 }}
-                          >
-                            {lightsOn ? "3 On" : "Off"}
-                          </motion.div>
+                          <div className="text-xs font-medium text-gray-800">Lights</div>
+                          <div className="text-xs text-gray-600">{lightsOn ? "3 On" : "Off"}</div>
                         </div>
                       </div>
                     </motion.div>
-                    
-                    <div className="bg-green-500/30 rounded-full px-2.5 py-1 border border-green-400/30">
-                      <div className="flex items-center">
-                        <div className="text-green-600 text-xs mr-1">🔒</div>
-                        <div>
-                          <div className="text-gray-800 text-xs font-medium">Security</div>
-                          <div className="text-gray-600 text-xs">Disarmed</div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   
                   <div>
                     <div className="text-gray-900 text-base font-semibold mb-3">Living Room</div>
                     <div className="grid grid-cols-2 gap-2.5">
-                      <motion.div 
-                        className="rounded-xl p-2.5 border border-gray-700/30 cursor-pointer"
-                        whileHover={{ scale: 1.02, y: -1 }}
-                        whileTap={{ scale: 0.98 }}
-                        animate={{
-                          backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.95)" : "rgba(31, 41, 55, 0.6)",
-                          borderColor: lightsOn ? "rgba(255, 193, 7, 0.3)" : "rgba(75, 85, 99, 0.3)",
-                          boxShadow: lightsOn ? 
-                            "0 2px 10px rgba(255, 193, 7, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1)" :
-                            "0 1px 3px rgba(0, 0, 0, 0.1)"
-                        }}
-                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <motion.div 
-                          className="text-base mb-1.5"
-                          animate={{
-                            color: lightsOn ? "#d97706" : "#fbbf24"
-                          }}
-                          transition={{ duration: 1 }}
-                        >
-                          💡
-                        </motion.div>
-                        <motion.div 
-                          className="text-xs font-medium"
-                          animate={{
-                            color: lightsOn ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
-                          }}
-                          transition={{ duration: 1 }}
-                        >
-                          Cove Light
-                        </motion.div>
-                        <motion.div 
-                          className="text-xs"
-                          animate={{
-                            color: lightsOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.5)"
-                          }}
-                          transition={{ duration: 1 }}
-                        >
-                          {lightsOn ? "On" : "Off"}
-                        </motion.div>
-                      </motion.div>
+                      <div className="rounded-xl p-2.5 border border-gray-300 bg-white/80">
+                        <div className="text-base mb-1.5">💡</div>
+                        <div className="text-xs font-medium text-gray-800">Cove Light</div>
+                        <div className="text-xs text-gray-600">{lightsOn ? "On" : "Off"}</div>
+                      </div>
                       
-                      <motion.div 
-                        className="rounded-xl p-2.5 border border-gray-700/30 cursor-pointer"
-                        whileHover={{ scale: 1.02, y: -1 }}
-                        whileTap={{ scale: 0.98 }}
-                        animate={{
-                          backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.95)" : "rgba(31, 41, 55, 0.6)",
-                          borderColor: lightsOn ? "rgba(255, 193, 7, 0.3)" : "rgba(75, 85, 99, 0.3)",
-                          boxShadow: lightsOn ? 
-                            "0 2px 10px rgba(255, 193, 7, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1)" :
-                            "0 1px 3px rgba(0, 0, 0, 0.1)"
-                        }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <motion.div 
-                          className="text-base mb-1.5"
-                          animate={{
-                            color: lightsOn ? "#d97706" : "#fbbf24"
-                          }}
-                          transition={{ duration: 1, delay: 0.2 }}
-                        >
-                          💡
-                        </motion.div>
-                        <motion.div 
-                          className="text-xs font-medium"
-                          animate={{
-                            color: lightsOn ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
-                          }}
-                          transition={{ duration: 1, delay: 0.2 }}
-                        >
-                          Spotlight
-                        </motion.div>
-                        <motion.div 
-                          className="text-xs"
-                          animate={{
-                            color: lightsOn ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.5)"
-                          }}
-                          transition={{ duration: 1, delay: 0.2 }}
-                        >
-                          {lightsOn ? "On" : "Off"}
-                        </motion.div>
-                      </motion.div>
+                      <div className="rounded-xl p-2.5 border border-gray-300 bg-white/80">
+                        <div className="text-base mb-1.5">💡</div>
+                        <div className="text-xs font-medium text-gray-800">Spotlight</div>
+                        <div className="text-xs text-gray-600">{lightsOn ? "On" : "Off"}</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -355,7 +219,6 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Section 3: Curtains - iPhone LEFT, Clean background */}
       <motion.section 
         className="min-h-screen relative overflow-hidden"
         onViewportEnter={() => setCurtainsInView(true)}
@@ -414,36 +277,25 @@ export default function Home() {
             viewport={{ once: true }}
             whileHover={{ scale: 1.02 }}
           >
-            <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl hover:shadow-3xl transition-shadow duration-300">
+            <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
               <div 
                 className="w-full h-full rounded-[2rem] relative overflow-hidden"
                 style={{
                   background: curtainsClosed 
-                    ? 'linear-gradient(135deg, #f1e2c6 0%, #d8b98b 100%)' // Evening cozy when curtains closed
-                    : 'linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%)'  // Light minimal when curtains open
+                    ? 'linear-gradient(135deg, #f1e2c6 0%, #d8b98b 100%)' 
+                    : 'linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%)'
                 }}
               >
                 
-                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10 flex items-center justify-center px-2">
-                  <div className="w-1.5 h-1.5 bg-gray-800 rounded-full mr-1.5 opacity-80"></div>
-                  <div className="w-1 h-1 bg-gray-700 rounded-full opacity-60"></div>
+                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10">
+                  <div className="flex items-center justify-center h-full px-2">
+                    <div className="w-1.5 h-1.5 bg-gray-800 rounded-full mr-1.5"></div>
+                    <div className="w-1 h-1 bg-gray-700 rounded-full"></div>
+                  </div>
                 </div>
                 
                 <div className="absolute top-2 left-4">
                   <div className="text-gray-800 text-xs font-medium">1:19</div>
-                </div>
-                <div className="absolute top-2 right-4 flex items-center space-x-1.5">
-                  <svg className="w-3 h-2 text-gray-800" viewBox="0 0 20 15" fill="currentColor">
-                    <path d="M2.5 8.5c3.5-3.5 9-3.5 12.5 0l-1.5 1.5c-2.5-2.5-6.5-2.5-9 0L2.5 8.5z"/>
-                    <path d="M5 11c2-2 5-2 7 0l-1.5 1.5c-1-1-2.5-1-3.5 0L5 11z"/>
-                    <circle cx="10" cy="14" r="1"/>
-                  </svg>
-                  <div className="flex items-center">
-                    <div className="w-5 h-2.5 border border-gray-800 rounded-sm relative">
-                      <div className="w-3 h-1 bg-green-400 rounded-sm absolute top-0.5 left-0.5"></div>
-                    </div>
-                    <div className="w-0.5 h-1 bg-gray-800 rounded-r ml-0.5"></div>
-                  </div>
                 </div>
                 
                 <div className="px-5 pt-12 pb-5 h-full">
@@ -457,127 +309,42 @@ export default function Home() {
                       whileTap={{ scale: 0.95 }}
                       animate={{
                         backgroundColor: curtainsClosed ? "rgba(255, 255, 255, 0.95)" : "rgba(79, 70, 229, 0.3)",
-                        borderColor: curtainsClosed ? "rgba(255, 255, 255, 0.4)" : "rgba(129, 140, 248, 0.4)",
-                        boxShadow: curtainsClosed ? 
-                          "0 0 20px rgba(255, 179, 102, 0.3), 0 2px 10px rgba(0, 0, 0, 0.1)" : 
-                          "0 0 0px rgba(255, 179, 102, 0)"
+                        borderColor: curtainsClosed ? "rgba(255, 255, 255, 0.4)" : "rgba(129, 140, 248, 0.4)"
                       }}
-                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      transition={{ duration: 0.6 }}
                     >
                       <div className="flex items-center">
-                        <motion.div 
-                          className="text-xs mr-1"
-                          animate={{
-                            color: curtainsClosed ? "#d97706" : "#a5b4fc"
-                          }}
-                          transition={{ duration: 0.8 }}
-                        >
-                          🏠
-                        </motion.div>
+                        <div className="text-xs mr-1">🏠</div>
                         <div>
-                          <motion.div 
-                            className="text-xs font-medium"
-                            animate={{
-                              color: curtainsClosed ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)"
-                            }}
-                            transition={{ duration: 0.8 }}
-                          >
-                            Curtains
-                          </motion.div>
-                          <motion.div 
-                            className="text-xs"
-                            animate={{
-                              color: curtainsClosed ? "rgba(0, 0, 0, 0.6)" : "rgba(255, 255, 255, 0.7)"
-                            }}
-                            transition={{ duration: 0.8 }}
-                          >
-                            {curtainsClosed ? "Closed" : "Open"}
-                          </motion.div>
+                          <div className="text-xs font-medium text-gray-800">Curtains</div>
+                          <div className="text-xs text-gray-600">{curtainsClosed ? "Closed" : "Open"}</div>
                         </div>
                       </div>
                     </motion.div>
-                    
-                    <div className="bg-amber-500/30 rounded-full px-2.5 py-1 border border-amber-400/30">
-                      <div className="flex items-center">
-                        <div className="text-amber-600 text-xs mr-1">💡</div>
-                        <div>
-                          <div className="text-gray-800 text-xs font-medium">Lights</div>
-                          <div className="text-gray-600 text-xs">{lightsOn ? "3 On" : "Off"}</div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                   
                   <div>
                     <div className="text-gray-900 text-base font-semibold mb-3">Living Room</div>
                     <div className="grid grid-cols-2 gap-2.5">
-                      <motion.div 
-                        className="rounded-xl p-2.5 border border-gray-700/30 cursor-pointer"
-                        whileHover={{ scale: 1.02, y: -1 }}
-                        whileTap={{ scale: 0.98 }}
-                        animate={{
-                          backgroundColor: curtainsClosed ? "rgba(31, 41, 55, 0.6)" : "rgba(255, 255, 255, 0.95)",
-                          borderColor: curtainsClosed ? "rgba(75, 85, 99, 0.3)" : "rgba(255, 179, 102, 0.3)",
-                          boxShadow: curtainsClosed ? 
-                            "0 1px 3px rgba(0, 0, 0, 0.1)" :
-                            "0 2px 10px rgba(255, 179, 102, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1)"
-                        }}
-                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <motion.div 
-                          className="text-base mb-1.5"
-                          animate={{
-                            color: curtainsClosed ? "#a5b4fc" : "#d97706"
-                          }}
-                          transition={{ duration: 1 }}
-                        >
-                          🪟
-                        </motion.div>
-                        <motion.div 
-                          className="text-xs font-medium"
-                          animate={{
-                            color: curtainsClosed ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"
-                          }}
-                          transition={{ duration: 1 }}
-                        >
-                          Sheer Curtain
-                        </motion.div>
-                        <motion.div 
-                          className="text-xs"
-                          animate={{
-                            color: curtainsClosed ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.6)"
-                          }}
-                          transition={{ duration: 1 }}
-                        >
-                          {curtainsClosed ? "Closed" : "Open"}
-                        </motion.div>
-                      </motion.div>
+                      <div className="rounded-xl p-2.5 border border-gray-300 bg-white/80">
+                        <div className="text-base mb-1.5">🪟</div>
+                        <div className="text-xs font-medium text-gray-800">Sheer Curtain</div>
+                        <div className="text-xs text-gray-600">{curtainsClosed ? "Closed" : "Open"}</div>
+                      </div>
                       
-                      <motion.div 
-                        className="rounded-xl p-2.5 border border-gray-700/30 cursor-pointer"
-                        whileHover={{ scale: 1.02, y: -1 }}
-                        whileTap={{ scale: 0.98 }}
-                        animate={{
-                          backgroundColor: curtainsClosed ? "rgba(31, 41, 55, 0.6)" : "rgba(255, 255, 255, 0.95)",
-                          borderColor: curtainsClosed ? "rgba(75, 85, 99, 0.3)" : "rgba(255, 179, 102, 0.3)",
-                          boxShadow: curtainsClosed ? 
-                            "0 1px 3px rgba(0, 0, 0, 0.1)" :
-                            "0 2px 10px rgba(255, 179, 102, 0.1), 0 1px 3px rgba(0, 0, 0, 0.1)"
-                        }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <motion.div 
-                          className="text-base mb-1.5"
-                          animate={{
-                            color: curtainsClosed ? "#a5b4fc" : "#d97706"
-                          }}
-                          transition={{ duration: 1, delay: 0.2 }}
-                        >
-                          🪟
-                        </motion.div>
-                        <motion.div 
-                          className="text-xs font-medium"
-                          animate={{
-                            color: curtainsClosed ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"
-                          }}
-                          transition={{ duration: 1, delay:
+                      <div className="rounded-xl p-2.5 border border-gray-300 bg-white/80">
+                        <div className="text-base mb-1.5">🪟</div>
+                        <div className="text-xs font-medium text-gray-800">Blackout Curtain</div>
+                        <div className="text-xs text-gray-600">{curtainsClosed ? "Closed" : "Open"}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+    </div>
+  )
+}
