@@ -126,105 +126,102 @@ export default function Home() {
           />
         </div>
         
-        <div className="flex items-center min-h-screen px-8 md:px-16 relative z-10">
-          {/* iPhone - Left Side */}
-          <div className="flex-shrink-0">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8, y: 40 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              className="relative"
-            >
-              <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
-                <div 
-                  className="w-full h-full rounded-[2rem] relative overflow-hidden"
-                  style={{ background: 'linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)' }}
-                >
+        <div className="flex flex-col items-start justify-center min-h-screen px-8 md:px-16 relative z-10">
+          {/* Text Content - Above iPhone */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true }}
+            className="mb-12 max-w-lg"
+          >
+            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
+              Perfect Light
+            </h2>
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-2">
+              Every room. Every moment.
+            </p>
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
+              Exactly as you want it.
+            </p>
+          </motion.div>
+          
+          {/* iPhone - Below Text */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.02 }}
+            className="relative"
+          >
+            <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
+              <div 
+                className="w-full h-full rounded-[2rem] relative overflow-hidden"
+                style={{ background: 'linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)' }}
+              >
+                
+                {/* Notch */}
+                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10">
+                  <div className="flex items-center justify-center h-full px-2">
+                    <div className="w-1.5 h-1.5 bg-gray-600 rounded-full mr-1.5"></div>
+                    <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
+                  </div>
+                </div>
+                
+                {/* Status Bar */}
+                <div className="absolute top-2 left-4">
+                  <div className="text-white text-xs font-medium">1:19</div>
+                </div>
+                
+                {/* Content */}
+                <div className="px-5 pt-12 pb-5 h-full">
+                  <div className="text-white text-2xl font-semibold mb-4">Lights</div>
                   
-                  {/* Notch */}
-                  <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10">
-                    <div className="flex items-center justify-center h-full px-2">
-                      <div className="w-1.5 h-1.5 bg-gray-600 rounded-full mr-1.5"></div>
-                      <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
-                    </div>
+                  {/* Main Control */}
+                  <div className="flex space-x-1.5 mb-5">
+                    <motion.div 
+                      className="rounded-full px-2.5 py-1 border cursor-pointer"
+                      onClick={toggleLights}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      animate={{
+                        backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.15)" : "rgba(99, 102, 241, 0.2)",
+                        borderColor: lightsOn ? "rgba(255, 255, 255, 0.3)" : "rgba(129, 140, 248, 0.3)"
+                      }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <div className="flex items-center">
+                        <div className="text-xs mr-1">💡</div>
+                        <div>
+                          <div className="text-xs font-medium text-white">Lights</div>
+                          <div className="text-xs text-white/70">{lightsOn ? "3 On" : "Off"}</div>
+                        </div>
+                      </div>
+                    </motion.div>
                   </div>
                   
-                  {/* Status Bar */}
-                  <div className="absolute top-2 left-4">
-                    <div className="text-white text-xs font-medium">1:19</div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="px-5 pt-12 pb-5 h-full">
-                    <div className="text-white text-2xl font-semibold mb-4">Lights</div>
-                    
-                    {/* Main Control */}
-                    <div className="flex space-x-1.5 mb-5">
-                      <motion.div 
-                        className="rounded-full px-2.5 py-1 border cursor-pointer"
-                        onClick={toggleLights}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        animate={{
-                          backgroundColor: lightsOn ? "rgba(255, 255, 255, 0.15)" : "rgba(99, 102, 241, 0.2)",
-                          borderColor: lightsOn ? "rgba(255, 255, 255, 0.3)" : "rgba(129, 140, 248, 0.3)"
-                        }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        <div className="flex items-center">
-                          <div className="text-xs mr-1">💡</div>
-                          <div>
-                            <div className="text-xs font-medium text-white">Lights</div>
-                            <div className="text-xs text-white/70">{lightsOn ? "3 On" : "Off"}</div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
-                    
-                    {/* Room Details */}
-                    <div>
-                      <div className="text-white text-base font-semibold mb-3">Living Room</div>
-                      <div className="grid grid-cols-2 gap-2.5">
-                        <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
-                          <div className="text-base mb-1.5">💡</div>
-                          <div className="text-xs font-medium text-white">Cove Light</div>
-                          <div className="text-xs text-white/70">{lightsOn ? "On" : "Off"}</div>
-                        </div>
-                        
-                        <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
-                          <div className="text-base mb-1.5">💡</div>
-                          <div className="text-xs font-medium text-white">Spotlight</div>
-                          <div className="text-xs text-white/70">{lightsOn ? "On" : "Off"}</div>
-                        </div>
+                  {/* Room Details */}
+                  <div>
+                    <div className="text-white text-base font-semibold mb-3">Living Room</div>
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
+                        <div className="text-base mb-1.5">💡</div>
+                        <div className="text-xs font-medium text-white">Cove Light</div>
+                        <div className="text-xs text-white/70">{lightsOn ? "On" : "Off"}</div>
+                      </div>
+                      
+                      <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
+                        <div className="text-base mb-1.5">💡</div>
+                        <div className="text-xs font-medium text-white">Spotlight</div>
+                        <div className="text-xs text-white/70">{lightsOn ? "On" : "Off"}</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </div>
-          
-          {/* Text Content - Right Side */}
-          <div className="flex-1 max-w-lg ml-auto mr-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
-                Perfect Light
-              </h2>
-              <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-2">
-                Every room. Every moment.
-              </p>
-              <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
-                Exactly as you want it.
-              </p>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
         </div>
       </motion.section>
 
@@ -261,85 +258,103 @@ export default function Home() {
           />
         </div>
         
-        <div className="flex items-center min-h-screen px-8 md:px-16 relative z-10">
-          {/* iPhone - Left Side */}
-          <div className="flex-shrink-0">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8, y: 40 }}
-              whileInView={{ opacity: 1, scale: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              className="relative"
-            >
-              <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
-                <div 
-                  className="w-full h-full rounded-[2rem] relative overflow-hidden"
-                  style={{ background: 'linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)' }}
-                >
-                  
-                  {/* Notch */}
-                  <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10">
-                    <div className="flex items-center justify-center h-full px-2">
-                      <div className="w-1.5 h-1.5 bg-gray-600 rounded-full mr-1.5"></div>
-                      <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
-                    </div>
+        <div className="flex flex-col items-start justify-center min-h-screen px-8 md:px-16 relative z-10">
+          {/* Text Content - Above iPhone */}
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.5 }}
+            viewport={{ once: true }}
+            className="mb-12 max-w-lg"
+          >
+            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
+              Perfect Privacy
+            </h2>
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-2">
+              Comfort and control.
+            </p>
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
+              Exactly when you need it.
+            </p>
+          </motion.div>
+          
+          {/* iPhone - Below Text */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.8, y: 40 }}
+            whileInView={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            viewport={{ once: true }}
+            whileHover={{ scale: 1.02 }}
+            className="relative"
+          >
+            <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl">
+              <div 
+                className="w-full h-full rounded-[2rem] relative overflow-hidden"
+                style={{ background: 'linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)' }}
+              >
+                
+                {/* Notch */}
+                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10">
+                  <div className="flex items-center justify-center h-full px-2">
+                    <div className="w-1.5 h-1.5 bg-gray-600 rounded-full mr-1.5"></div>
+                    <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
                   </div>
+                </div>
+                
+                {/* Status Bar */}
+                <div className="absolute top-2 left-4">
+                  <div className="text-white text-xs font-medium">1:19</div>
+                </div>
+                
+                {/* Content */}
+                <div className="px-5 pt-12 pb-5 h-full">
+                  <div className="text-white text-2xl font-semibold mb-4">Curtains</div>
                   
-                  {/* Status Bar */}
-                  <div className="absolute top-2 left-4">
-                    <div className="text-white text-xs font-medium">1:19</div>
-                  </div>
-                  
-                  {/* Content */}
-                  <div className="px-5 pt-12 pb-5 h-full">
-                    <div className="text-white text-2xl font-semibold mb-4">Curtains</div>
-                    
-                    {/* Main Control */}
-                    <div className="flex space-x-1.5 mb-5">
-                      <motion.div 
-                        className="rounded-full px-2.5 py-1 border cursor-pointer"
-                        onClick={toggleCurtains}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        animate={{
-                          backgroundColor: curtainsClosed ? "rgba(255, 255, 255, 0.15)" : "rgba(79, 70, 229, 0.2)",
-                          borderColor: curtainsClosed ? "rgba(255, 255, 255, 0.3)" : "rgba(129, 140, 248, 0.3)"
-                        }}
-                        transition={{ duration: 0.6 }}
-                      >
-                        <div className="flex items-center">
-                          <div className="text-xs mr-1">🏠</div>
-                          <div>
-                            <div className="text-xs font-medium text-white">Curtains</div>
-                            <div className="text-xs text-white/70">{curtainsClosed ? "Closed" : "Open"}</div>
-                          </div>
-                        </div>
-                      </motion.div>
-                    </div>
-                    
-                    {/* Room Details */}
-                    <div>
-                      <div className="text-white text-base font-semibold mb-3">Living Room</div>
-                      <div className="grid grid-cols-2 gap-2.5">
-                        <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
-                          <div className="text-base mb-1.5">🪟</div>
-                          <div className="text-xs font-medium text-white">Sheer Curtain</div>
+                  {/* Main Control */}
+                  <div className="flex space-x-1.5 mb-5">
+                    <motion.div 
+                      className="rounded-full px-2.5 py-1 border cursor-pointer"
+                      onClick={toggleCurtains}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      animate={{
+                        backgroundColor: curtainsClosed ? "rgba(255, 255, 255, 0.15)" : "rgba(79, 70, 229, 0.2)",
+                        borderColor: curtainsClosed ? "rgba(255, 255, 255, 0.3)" : "rgba(129, 140, 248, 0.3)"
+                      }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <div className="flex items-center">
+                        <div className="text-xs mr-1">🏠</div>
+                        <div>
+                          <div className="text-xs font-medium text-white">Curtains</div>
                           <div className="text-xs text-white/70">{curtainsClosed ? "Closed" : "Open"}</div>
                         </div>
-                        
-                        <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
-                          <div className="text-base mb-1.5">🪟</div>
-                          <div className="text-xs font-medium text-white">Blackout Curtain</div>
-                          <div className="text-xs text-white/70">{curtainsClosed ? "Closed" : "Open"}</div>
-                        </div>
+                      </div>
+                    </motion.div>
+                  </div>
+                  
+                  {/* Room Details */}
+                  <div>
+                    <div className="text-white text-base font-semibold mb-3">Living Room</div>
+                    <div className="grid grid-cols-2 gap-2.5">
+                      <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
+                        <div className="text-base mb-1.5">🪟</div>
+                        <div className="text-xs font-medium text-white">Sheer Curtain</div>
+                        <div className="text-xs text-white/70">{curtainsClosed ? "Closed" : "Open"}</div>
+                      </div>
+                      
+                      <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
+                        <div className="text-base mb-1.5">🪟</div>
+                        <div className="text-xs font-medium text-white">Blackout Curtain</div>
+                        <div className="text-xs text-white/70">{curtainsClosed ? "Closed" : "Open"}</div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </motion.div>
-          </div>
+            </div>
+          </motion.div>
+        </div>
       </motion.section>
     </div>
   )
