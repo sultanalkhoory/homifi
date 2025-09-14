@@ -383,19 +383,22 @@ export default function Home() {
           />
         </div>
         
-        <div className="flex flex-col items-end justify-center min-h-screen px-8 md:px-16 relative z-10">
+        <div className="flex flex-col items-start justify-center min-h-screen px-8 md:px-16 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5 }}
             viewport={{ once: true }}
-            className="mb-12 max-w-lg text-right"
+            className="mb-12 max-w-lg"
           >
             <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
               Perfect Privacy
             </h2>
             <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
-              Comfort and control. Exactly when you need it.
+              Comfort and control.
+            </p>
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
+              Exactly when you need it.
             </p>
           </motion.div>
           
