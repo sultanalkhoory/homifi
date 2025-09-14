@@ -352,6 +352,7 @@ export default function Home() {
         viewport={{ once: true, amount: 0.3 }}
       >
         <div className="absolute inset-0 z-0">
+          {/* Base layer - always shows closed curtains in current light state */}
           <motion.div 
             className="absolute inset-0"
             style={{
@@ -364,6 +365,7 @@ export default function Home() {
             }}
           />
           
+          {/* Overlay layer - shows open curtains when curtains are open */}
           <motion.div 
             className="absolute inset-0"
             style={{
