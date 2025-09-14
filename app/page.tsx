@@ -17,8 +17,8 @@ export default function Home() {
     mass: 1
   })
 
-  // Smooth curtain transition spring
-  const curtainProgress = useSpring(0, {
+  // Smooth curtain transition spring (starts at 1 for open state)
+  const curtainProgress = useSpring(1, {
     stiffness: 60,     // Slower, more elegant
     damping: 30,       // More dampened for smoothness
     mass: 1.5          // Heavier feel like real curtains
