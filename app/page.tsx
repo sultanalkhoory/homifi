@@ -10,7 +10,7 @@ export default function Home() {
   const [curtainsInView, setCurtainsInView] = useState(false)
   const [curtainsClosed, setCurtainsClosed] = useState(false)
   
-  // Spring transitions with Apple-like easing
+  // Spring transitions
   const backgroundProgress = useSpring(0, { 
     stiffness: 80,
     damping: 20,
@@ -19,12 +19,12 @@ export default function Home() {
 
   // Smooth curtain transition spring (starts at 1 for open state)
   const curtainProgress = useSpring(1, {
-    stiffness: 60,     // Slower, more elegant
-    damping: 30,       // More dampened for smoothness
-    mass: 1.5          // Heavier feel like real curtains
+    stiffness: 60,
+    damping: 30,
+    mass: 1.5
   })
 
-  // Auto-trigger lights when dashboard appears
+  // Auto-trigger lights when dashboard appears (no auto-toggle back)
   useEffect(() => {
     if (dashboardInView && !lightsOn) {
       const timer = setTimeout(() => {
@@ -35,31 +35,29 @@ export default function Home() {
     }
   }, [dashboardInView, lightsOn, backgroundProgress])
 
-  // Auto-trigger curtains when section appears
+  // Auto-trigger curtains when section appears (no auto-toggle back)
   useEffect(() => {
     if (curtainsInView && !curtainsClosed) {
       const timer = setTimeout(() => {
         setCurtainsClosed(true)
-        // Smooth curtain closing animation
-        curtainProgress.set(1)
+        curtainProgress.set(0)
       }, 1000)
       return () => clearTimeout(timer)
     }
   }, [curtainsInView, curtainsClosed, curtainProgress])
 
-  // Handle manual light toggle
+  // Handle manual light toggle (stays toggled until clicked again)
   const toggleLights = () => {
     const newState = !lightsOn
     setLightsOn(newState)
     backgroundProgress.set(newState ? 1 : 0)
   }
 
-  // Handle manual curtain toggle
+  // Handle manual curtain toggle (stays toggled until clicked again)
   const toggleCurtains = () => {
     const newState = !curtainsClosed
     setCurtainsClosed(newState)
-    // Smooth manual toggle
-    curtainProgress.set(newState ? 1 : 0)
+    curtainProgress.set(newState ? 0 : 1)
   }
 
   return (
@@ -116,7 +114,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Lights Control Section */}
+      {/* Section 2: Lights Control Section - RIGHT SIDE */}
       <motion.section 
         className="min-h-screen relative overflow-hidden"
         onViewportEnter={() => setDashboardInView(true)}
@@ -145,19 +143,22 @@ export default function Home() {
           />
         </div>
         
-        <div className="flex flex-col items-start justify-center min-h-screen px-8 md:px-16 relative z-10">
+        <div className="flex flex-col items-end justify-center min-h-screen px-8 md:px-16 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5 }}
             viewport={{ once: true }}
-            className="mb-12 max-w-lg"
+            className="mb-12 max-w-lg text-right"
           >
             <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
               Perfect Light
             </h2>
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-2">
+              Every room. Every moment.
+            </p>
             <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
-              Every room. Every moment. Exactly as you want it.
+              Exactly as you want it.
             </p>
           </motion.div>
           
@@ -350,7 +351,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Curtains/Privacy Section */}
+      {/* Section 3: Curtains/Privacy Section - LEFT SIDE */}
       <motion.section 
         className="min-h-screen relative overflow-hidden"
         onViewportEnter={() => setCurtainsInView(true)}
@@ -394,7 +395,7 @@ export default function Home() {
             <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
               Perfect Privacy
             </h2>
-            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-2">
               Comfort and control.
             </p>
             <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
@@ -528,7 +529,7 @@ export default function Home() {
                           }}
                           transition={{ duration: 1 }}
                         >
-                          Main Window
+                          Sheer Curtain
                         </motion.div>
                         <motion.div 
                           className="text-xs"
