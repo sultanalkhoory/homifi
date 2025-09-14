@@ -340,27 +340,6 @@ export default function Home() {
               </div>
             </motion.div>
           </div>
-          
-          {/* Text Content - Right Side */}
-          <div className="flex-1 max-w-lg ml-auto mr-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 50 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.5 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
-                Perfect Privacy
-              </h2>
-              <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-2">
-                Comfort and control.
-              </p>
-              <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
-                Exactly when you need it.
-              </p>
-            </motion.div>
-          </div>
-        </div>
       </motion.section>
     </div>
   )
