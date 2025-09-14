@@ -126,7 +126,7 @@ export default function Home() {
           />
         </div>
         
-        <div className="flex flex-col items-start justify-center min-h-screen px-8 md:px-16 relative z-10">
+        <div className="flex flex-col items-start justify-center min-h-screen px-8 md:px-16 pt-24 relative z-10">
           {/* Text Content - Above iPhone */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
