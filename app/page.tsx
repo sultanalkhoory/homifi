@@ -4,11 +4,13 @@ import { motion, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
-  // All state declarations
+  // All state declarations including manual toggle flags
   const [lightsOn, setLightsOn] = useState(false)
   const [dashboardInView, setDashboardInView] = useState(false)
   const [curtainsInView, setCurtainsInView] = useState(false)
   const [curtainsClosed, setCurtainsClosed] = useState(false)
+  const [lightsManuallyToggled, setLightsManuallyToggled] = useState(false)
+  const [curtainsManuallyToggled, setCurtainsManuallyToggled] = useState(false)
   
   // Spring transitions
   const backgroundProgress = useSpring(0, { 
@@ -24,27 +26,27 @@ export default function Home() {
     mass: 1.5
   })
 
-  // Auto-trigger lights when dashboard appears (no auto-toggle back)
+  // Auto-trigger lights when dashboard appears (only if not manually toggled)
   useEffect(() => {
-    if (dashboardInView && !lightsOn) {
+    if (dashboardInView && !lightsOn && !lightsManuallyToggled) {
       const timer = setTimeout(() => {
         setLightsOn(true)
         backgroundProgress.set(1)
       }, 1200)
       return () => clearTimeout(timer)
     }
-  }, [dashboardInView, lightsOn, backgroundProgress])
+  }, [dashboardInView, lightsOn, lightsManuallyToggled, backgroundProgress])
 
-  // Auto-trigger curtains when section appears (no auto-toggle back)
+  // Auto-trigger curtains when section appears (only if not manually toggled)
   useEffect(() => {
-    if (curtainsInView && !curtainsClosed) {
+    if (curtainsInView && !curtainsClosed && !curtainsManuallyToggled) {
       const timer = setTimeout(() => {
         setCurtainsClosed(true)
         curtainProgress.set(0)
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [curtainsInView, curtainsClosed, curtainProgress])
+  }, [curtainsInView, curtainsClosed, curtainsManuallyToggled, curtainProgress])
 
   // Handle manual light toggle (prevents auto-triggers)
   const toggleLights = () => {
@@ -543,6 +545,17 @@ export default function Home() {
                           {curtainsClosed ? "Closed" : "Open"}
                         </motion.div>
                       </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+    </main>
+  )
+}</motion.div>
                       
                       <motion.div 
                         className="rounded-xl p-2.5 border border-gray-700/30 cursor-pointer"
@@ -584,15 +597,3 @@ export default function Home() {
                         >
                           {curtainsClosed ? "Closed" : "Open"}
                         </motion.div>
-                      </motion.div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
-    </main>
-  )
-}
