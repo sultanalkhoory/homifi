@@ -58,8 +58,14 @@ export default function Home() {
   }
 
   return (
-    <main className="bg-black text-white">
-      <section className="min-h-screen relative overflow-hidden">
+    <div className="text-white">
+      {/* Hero Section */}
+      <section 
+        className="min-h-screen relative overflow-hidden"
+        style={{
+          background: 'linear-gradient(135deg, #1f2937 0%, #000000 100%)'
+        }}
+      >
         <div 
           className="absolute inset-0 z-0"
           style={{
@@ -110,10 +116,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section 2: Lights - iPhone LEFT */}
       <motion.section 
-        className="min-h-screen relative overflow-hidden"
+        className="min-h-screen relative overflow-hidden transition-all duration-1000"
         onViewportEnter={() => setDashboardInView(true)}
         viewport={{ once: true, amount: 0.3 }}
+        style={{
+          background: lightsOn 
+            ? 'linear-gradient(135deg, #f1e2c6 0%, #d8b98b 100%)' // Evening cozy when lights on
+            : 'linear-gradient(135deg, #e8dfd5 0%, #f5f1eb 100%)'  // Warm neutral when lights off
+        }}
       >
         <div className="absolute inset-0 z-0">
           <div 
@@ -138,21 +150,21 @@ export default function Home() {
           />
         </div>
         
-        <div className="flex flex-col items-end justify-center min-h-screen px-8 md:px-16 relative z-10">
+        <div className="flex flex-col items-start justify-center min-h-screen px-8 md:px-16 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.5 }}
             viewport={{ once: true }}
-            className="mb-12 max-w-lg text-right"
+            className="mb-12 max-w-lg"
           >
-            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
+            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-gray-900 leading-tight">
               Perfect Light
             </h2>
-            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-2">
+            <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed mb-2">
               Every room. Every moment.
             </p>
-            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed">
               Exactly as you want it.
             </p>
           </motion.div>
@@ -346,13 +358,18 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Section 3: Curtains - iPhone LEFT */}
       <motion.section 
-        className="min-h-screen relative overflow-hidden"
+        className="min-h-screen relative overflow-hidden transition-all duration-1000"
         onViewportEnter={() => setCurtainsInView(true)}
         viewport={{ once: true, amount: 0.3 }}
+        style={{
+          background: curtainsClosed 
+            ? 'linear-gradient(135deg, #f1e2c6 0%, #d8b98b 100%)' // Evening cozy when curtains closed
+            : 'linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%)'  // Light minimal when curtains open (daylight)
+        }}
       >
         <div className="absolute inset-0 z-0">
-          {/* Base layer - always shows closed curtains in current light state */}
           <motion.div 
             className="absolute inset-0"
             style={{
@@ -365,7 +382,6 @@ export default function Home() {
             }}
           />
           
-          {/* Overlay layer - shows open curtains when curtains are open */}
           <motion.div 
             className="absolute inset-0"
             style={{
@@ -388,13 +404,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-12 max-w-lg"
           >
-            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
+            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-gray-900 leading-tight">
               Perfect Privacy
             </h2>
-            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-2">
+            <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed mb-2">
               Comfort and control.
             </p>
-            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
+            <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed">
               Exactly when you need it.
             </p>
           </motion.div>
@@ -566,27 +582,3 @@ export default function Home() {
                             color: curtainsClosed ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"
                           }}
                           transition={{ duration: 1, delay: 0.2 }}
-                        >
-                          Blackout Curtain
-                        </motion.div>
-                        <motion.div 
-                          className="text-xs"
-                          animate={{
-                            color: curtainsClosed ? "rgba(255, 255, 255, 0.5)" : "rgba(0, 0, 0, 0.6)"
-                          }}
-                          transition={{ duration: 1, delay: 0.2 }}
-                        >
-                          {curtainsClosed ? "Closed" : "Open"}
-                        </motion.div>
-                      </motion.div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
-    </main>
-  )
-}
