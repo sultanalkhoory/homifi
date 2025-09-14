@@ -128,7 +128,13 @@ export default function Home() {
     </motion.div>
   )
 
-  const DeviceCard = ({ icon, name, status }) => (
+  interface DeviceCardProps {
+    icon: string
+    name: string
+    status: string
+  }
+
+  const DeviceCard = ({ icon, name, status }: DeviceCardProps) => (
     <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
       <div className="text-base mb-1.5">{icon}</div>
       <div className="text-xs font-medium text-white">{name}</div>
