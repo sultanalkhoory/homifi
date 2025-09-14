@@ -59,12 +59,8 @@ export default function Home() {
 
   return (
     <div className="text-white">
-      <section 
-        className="min-h-screen relative overflow-hidden"
-        style={{
-          background: 'linear-gradient(135deg, #1f2937 0%, #000000 100%)'
-        }}
-      >
+      {/* Hero Section - Clean background, room image visible */}
+      <section className="min-h-screen relative overflow-hidden">
         <div 
           className="absolute inset-0 z-0"
           style={{
@@ -115,15 +111,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Section 2: Lights - iPhone LEFT, Clean background */}
       <motion.section 
-        className="min-h-screen relative overflow-hidden transition-all duration-1000"
+        className="min-h-screen relative overflow-hidden"
         onViewportEnter={() => setDashboardInView(true)}
         viewport={{ once: true, amount: 0.3 }}
-        style={{
-          background: lightsOn 
-            ? 'linear-gradient(135deg, #f1e2c6 0%, #d8b98b 100%)' 
-            : 'linear-gradient(135deg, #e8dfd5 0%, #f5f1eb 100%)'
-        }}
       >
         <div className="absolute inset-0 z-0">
           <div 
@@ -156,13 +148,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-12 max-w-lg"
           >
-            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-gray-900 leading-tight">
+            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
               Perfect Light
             </h2>
-            <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed mb-2">
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-2">
               Every room. Every moment.
             </p>
-            <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed">
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
               Exactly as you want it.
             </p>
           </motion.div>
@@ -175,7 +167,14 @@ export default function Home() {
             whileHover={{ scale: 1.02 }}
           >
             <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl hover:shadow-3xl transition-shadow duration-300">
-              <div className="w-full h-full bg-gradient-to-br from-purple-900 via-blue-900 to-teal-800 rounded-[2rem] relative overflow-hidden">
+              <div 
+                className="w-full h-full rounded-[2rem] relative overflow-hidden"
+                style={{
+                  background: lightsOn 
+                    ? 'linear-gradient(135deg, #f1e2c6 0%, #d8b98b 100%)' // Evening cozy when lights on
+                    : 'linear-gradient(135deg, #e8dfd5 0%, #f5f1eb 100%)'  // Warm neutral when lights off
+                }}
+              >
                 
                 <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10 flex items-center justify-center px-2">
                   <div className="w-1.5 h-1.5 bg-gray-800 rounded-full mr-1.5 opacity-80"></div>
@@ -183,24 +182,24 @@ export default function Home() {
                 </div>
                 
                 <div className="absolute top-2 left-4">
-                  <div className="text-white text-xs font-medium">1:19</div>
+                  <div className="text-gray-800 text-xs font-medium">1:19</div>
                 </div>
                 <div className="absolute top-2 right-4 flex items-center space-x-1.5">
-                  <svg className="w-3 h-2 text-white" viewBox="0 0 20 15" fill="currentColor">
+                  <svg className="w-3 h-2 text-gray-800" viewBox="0 0 20 15" fill="currentColor">
                     <path d="M2.5 8.5c3.5-3.5 9-3.5 12.5 0l-1.5 1.5c-2.5-2.5-6.5-2.5-9 0L2.5 8.5z"/>
                     <path d="M5 11c2-2 5-2 7 0l-1.5 1.5c-1-1-2.5-1-3.5 0L5 11z"/>
                     <circle cx="10" cy="14" r="1"/>
                   </svg>
                   <div className="flex items-center">
-                    <div className="w-5 h-2.5 border border-white rounded-sm relative">
+                    <div className="w-5 h-2.5 border border-gray-800 rounded-sm relative">
                       <div className="w-3 h-1 bg-green-400 rounded-sm absolute top-0.5 left-0.5"></div>
                     </div>
-                    <div className="w-0.5 h-1 bg-white rounded-r ml-0.5"></div>
+                    <div className="w-0.5 h-1 bg-gray-800 rounded-r ml-0.5"></div>
                   </div>
                 </div>
                 
                 <div className="px-5 pt-12 pb-5 h-full">
-                  <div className="text-white text-2xl font-semibold mb-4">Lights</div>
+                  <div className="text-gray-900 text-2xl font-semibold mb-4">Lights</div>
                   
                   <div className="flex space-x-1.5 mb-5">
                     <motion.div 
@@ -252,17 +251,17 @@ export default function Home() {
                     
                     <div className="bg-green-500/30 rounded-full px-2.5 py-1 border border-green-400/30">
                       <div className="flex items-center">
-                        <div className="text-green-300 text-xs mr-1">🔒</div>
+                        <div className="text-green-600 text-xs mr-1">🔒</div>
                         <div>
-                          <div className="text-white text-xs font-medium">Security</div>
-                          <div className="text-white/70 text-xs">Disarmed</div>
+                          <div className="text-gray-800 text-xs font-medium">Security</div>
+                          <div className="text-gray-600 text-xs">Disarmed</div>
                         </div>
                       </div>
                     </div>
                   </div>
                   
                   <div>
-                    <div className="text-white text-base font-semibold mb-3">Living Room</div>
+                    <div className="text-gray-900 text-base font-semibold mb-3">Living Room</div>
                     <div className="grid grid-cols-2 gap-2.5">
                       <motion.div 
                         className="rounded-xl p-2.5 border border-gray-700/30 cursor-pointer"
@@ -356,15 +355,11 @@ export default function Home() {
         </div>
       </motion.section>
 
+      {/* Section 3: Curtains - iPhone LEFT, Clean background */}
       <motion.section 
-        className="min-h-screen relative overflow-hidden transition-all duration-1000"
+        className="min-h-screen relative overflow-hidden"
         onViewportEnter={() => setCurtainsInView(true)}
         viewport={{ once: true, amount: 0.3 }}
-        style={{
-          background: curtainsClosed 
-            ? 'linear-gradient(135deg, #f1e2c6 0%, #d8b98b 100%)' 
-            : 'linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%)'
-        }}
       >
         <div className="absolute inset-0 z-0">
           <motion.div 
@@ -401,13 +396,13 @@ export default function Home() {
             viewport={{ once: true }}
             className="mb-12 max-w-lg"
           >
-            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-gray-900 leading-tight">
+            <h2 className="text-4xl md:text-6xl font-thin mb-6 text-white leading-tight">
               Perfect Privacy
             </h2>
-            <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed mb-2">
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed mb-2">
               Comfort and control.
             </p>
-            <p className="text-lg md:text-xl text-gray-800 font-light leading-relaxed">
+            <p className="text-lg md:text-xl text-white/80 font-light leading-relaxed">
               Exactly when you need it.
             </p>
           </motion.div>
@@ -420,7 +415,14 @@ export default function Home() {
             whileHover={{ scale: 1.02 }}
           >
             <div className="w-64 h-[520px] bg-black rounded-[2.5rem] p-2 shadow-2xl hover:shadow-3xl transition-shadow duration-300">
-              <div className="w-full h-full bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-800 rounded-[2rem] relative overflow-hidden">
+              <div 
+                className="w-full h-full rounded-[2rem] relative overflow-hidden"
+                style={{
+                  background: curtainsClosed 
+                    ? 'linear-gradient(135deg, #f1e2c6 0%, #d8b98b 100%)' // Evening cozy when curtains closed
+                    : 'linear-gradient(135deg, #f5f5f7 0%, #ffffff 100%)'  // Light minimal when curtains open
+                }}
+              >
                 
                 <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10 flex items-center justify-center px-2">
                   <div className="w-1.5 h-1.5 bg-gray-800 rounded-full mr-1.5 opacity-80"></div>
@@ -428,24 +430,24 @@ export default function Home() {
                 </div>
                 
                 <div className="absolute top-2 left-4">
-                  <div className="text-white text-xs font-medium">1:19</div>
+                  <div className="text-gray-800 text-xs font-medium">1:19</div>
                 </div>
                 <div className="absolute top-2 right-4 flex items-center space-x-1.5">
-                  <svg className="w-3 h-2 text-white" viewBox="0 0 20 15" fill="currentColor">
+                  <svg className="w-3 h-2 text-gray-800" viewBox="0 0 20 15" fill="currentColor">
                     <path d="M2.5 8.5c3.5-3.5 9-3.5 12.5 0l-1.5 1.5c-2.5-2.5-6.5-2.5-9 0L2.5 8.5z"/>
                     <path d="M5 11c2-2 5-2 7 0l-1.5 1.5c-1-1-2.5-1-3.5 0L5 11z"/>
                     <circle cx="10" cy="14" r="1"/>
                   </svg>
                   <div className="flex items-center">
-                    <div className="w-5 h-2.5 border border-white rounded-sm relative">
+                    <div className="w-5 h-2.5 border border-gray-800 rounded-sm relative">
                       <div className="w-3 h-1 bg-green-400 rounded-sm absolute top-0.5 left-0.5"></div>
                     </div>
-                    <div className="w-0.5 h-1 bg-white rounded-r ml-0.5"></div>
+                    <div className="w-0.5 h-1 bg-gray-800 rounded-r ml-0.5"></div>
                   </div>
                 </div>
                 
                 <div className="px-5 pt-12 pb-5 h-full">
-                  <div className="text-white text-2xl font-semibold mb-4">Curtains</div>
+                  <div className="text-gray-900 text-2xl font-semibold mb-4">Curtains</div>
                   
                   <div className="flex space-x-1.5 mb-5">
                     <motion.div 
@@ -497,17 +499,17 @@ export default function Home() {
                     
                     <div className="bg-amber-500/30 rounded-full px-2.5 py-1 border border-amber-400/30">
                       <div className="flex items-center">
-                        <div className="text-amber-300 text-xs mr-1">💡</div>
+                        <div className="text-amber-600 text-xs mr-1">💡</div>
                         <div>
-                          <div className="text-white text-xs font-medium">Lights</div>
-                          <div className="text-white/70 text-xs">{lightsOn ? "3 On" : "Off"}</div>
+                          <div className="text-gray-800 text-xs font-medium">Lights</div>
+                          <div className="text-gray-600 text-xs">{lightsOn ? "3 On" : "Off"}</div>
                         </div>
                       </div>
                     </div>
                   </div>
                   
                   <div>
-                    <div className="text-white text-base font-semibold mb-3">Living Room</div>
+                    <div className="text-gray-900 text-base font-semibold mb-3">Living Room</div>
                     <div className="grid grid-cols-2 gap-2.5">
                       <motion.div 
                         className="rounded-xl p-2.5 border border-gray-700/30 cursor-pointer"
@@ -578,11 +580,4 @@ export default function Home() {
                           animate={{
                             color: curtainsClosed ? "rgb(255, 255, 255)" : "rgb(0, 0, 0)"
                           }}
-                          transition={{ duration: 1, delay: 0.2 }}
-                        >
-                          Blackout Curtain
-                        </motion.div>
-                        <motion.div 
-                          className="text-xs"
-                          animate={{
-                            color: curtainsClosed ? "rgba(255, 255,
+                          transition={{ duration: 1, delay:
