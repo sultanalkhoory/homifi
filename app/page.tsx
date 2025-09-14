@@ -46,15 +46,17 @@ export default function Home() {
     }
   }, [curtainsInView, curtainsClosed, curtainProgress])
 
-  // Handle manual light toggle (stays toggled until clicked again)
+  // Handle manual light toggle (prevents auto-triggers)
   const toggleLights = () => {
+    setLightsManuallyToggled(true) // Disable auto-triggers
     const newState = !lightsOn
     setLightsOn(newState)
     backgroundProgress.set(newState ? 1 : 0)
   }
 
-  // Handle manual curtain toggle (stays toggled until clicked again)
+  // Handle manual curtain toggle (prevents auto-triggers)
   const toggleCurtains = () => {
+    setCurtainsManuallyToggled(true) // Disable auto-triggers
     const newState = !curtainsClosed
     setCurtainsClosed(newState)
     curtainProgress.set(newState ? 0 : 1)
