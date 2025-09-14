@@ -4,7 +4,6 @@ import { motion, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 export default function Home() {
-  // All state declarations including manual toggle flags
   const [lightsOn, setLightsOn] = useState(false)
   const [dashboardInView, setDashboardInView] = useState(false)
   const [curtainsInView, setCurtainsInView] = useState(false)
@@ -12,21 +11,18 @@ export default function Home() {
   const [lightsManuallyToggled, setLightsManuallyToggled] = useState(false)
   const [curtainsManuallyToggled, setCurtainsManuallyToggled] = useState(false)
   
-  // Spring transitions
   const backgroundProgress = useSpring(0, { 
     stiffness: 80,
     damping: 20,
     mass: 1
   })
 
-  // Smooth curtain transition spring (starts at 1 for open state)
   const curtainProgress = useSpring(1, {
     stiffness: 60,
     damping: 30,
     mass: 1.5
   })
 
-  // Auto-trigger lights when dashboard appears (only if not manually toggled)
   useEffect(() => {
     if (dashboardInView && !lightsOn && !lightsManuallyToggled) {
       const timer = setTimeout(() => {
@@ -37,7 +33,6 @@ export default function Home() {
     }
   }, [dashboardInView, lightsOn, lightsManuallyToggled, backgroundProgress])
 
-  // Auto-trigger curtains when section appears (only if not manually toggled)
   useEffect(() => {
     if (curtainsInView && !curtainsClosed && !curtainsManuallyToggled) {
       const timer = setTimeout(() => {
@@ -48,17 +43,15 @@ export default function Home() {
     }
   }, [curtainsInView, curtainsClosed, curtainsManuallyToggled, curtainProgress])
 
-  // Handle manual light toggle (prevents auto-triggers)
   const toggleLights = () => {
-    setLightsManuallyToggled(true) // Disable auto-triggers
+    setLightsManuallyToggled(true)
     const newState = !lightsOn
     setLightsOn(newState)
     backgroundProgress.set(newState ? 1 : 0)
   }
 
-  // Handle manual curtain toggle (prevents auto-triggers)
   const toggleCurtains = () => {
-    setCurtainsManuallyToggled(true) // Disable auto-triggers
+    setCurtainsManuallyToggled(true)
     const newState = !curtainsClosed
     setCurtainsClosed(newState)
     curtainProgress.set(newState ? 0 : 1)
@@ -66,7 +59,6 @@ export default function Home() {
 
   return (
     <main className="bg-black text-white">
-      {/* Hero Section */}
       <section className="min-h-screen relative overflow-hidden">
         <div 
           className="absolute inset-0 z-0"
@@ -118,7 +110,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Section 2: Lights Control Section - RIGHT SIDE */}
       <motion.section 
         className="min-h-screen relative overflow-hidden"
         onViewportEnter={() => setDashboardInView(true)}
@@ -355,7 +346,6 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Section 3: Curtains/Privacy Section - LEFT SIDE */}
       <motion.section 
         className="min-h-screen relative overflow-hidden"
         onViewportEnter={() => setCurtainsInView(true)}
@@ -545,17 +535,6 @@ export default function Home() {
                           {curtainsClosed ? "Closed" : "Open"}
                         </motion.div>
                       </motion.div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
-    </main>
-  )
-}</motion.div>
                       
                       <motion.div 
                         className="rounded-xl p-2.5 border border-gray-700/30 cursor-pointer"
@@ -597,3 +576,15 @@ export default function Home() {
                         >
                           {curtainsClosed ? "Closed" : "Open"}
                         </motion.div>
+                      </motion.div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </motion.section>
+    </main>
+  )
+}
