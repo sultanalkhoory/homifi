@@ -162,7 +162,7 @@ export default function Home() {
               >
                 
                 {/* Dynamic Island */}
-                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-6 bg-black rounded-full z-10 flex items-center justify-center">
+                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10 flex items-center justify-center">
                   <div className="flex items-center space-x-2">
                     {/* Front camera */}
                     <div className="w-1.5 h-1.5 bg-black rounded-full border border-gray-800"></div>
@@ -220,7 +220,7 @@ export default function Home() {
                       </div>
                       
                       <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
-                        <div className={`text-base mb-1.5 ${lightsOn ? 'drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]' : ''}`}>🪔</div>
+                        <div className={`text-base mb-1.5 ${lightsOn ? 'drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]' : ''}`}>💡</div>
                         <div className="text-xs font-medium text-white">Lamp Light</div>
                         <div className="text-xs text-white/70">{lightsOn ? "On" : "Off"}</div>
                       </div>
@@ -298,7 +298,7 @@ export default function Home() {
               >
                 
                 {/* Dynamic Island */}
-                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-6 bg-black rounded-full z-10 flex items-center justify-center">
+                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10 flex items-center justify-center">
                   <div className="flex items-center space-x-2">
                     {/* Front camera */}
                     <div className="w-1.5 h-1.5 bg-black rounded-full border border-gray-800"></div>
