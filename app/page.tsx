@@ -10,6 +10,22 @@ export default function Home() {
   const [curtainsClosed, setCurtainsClosed] = useState(false)
   const [lightsManuallyToggled, setLightsManuallyToggled] = useState(false)
   const [curtainsManuallyToggled, setCurtainsManuallyToggled] = useState(false)
+  const [curtainVideo, setCurtainVideo] = useState(null)
+
+  // Video control for curtains
+  const playCurtainVideo = (direction) => {
+    if (curtainVideo) {
+      if (direction === 'close') {
+        curtainVideo.currentTime = 0
+        curtainVideo.playbackRate = 1
+        curtainVideo.play()
+      } else {
+        curtainVideo.currentTime = curtainVideo.duration
+        curtainVideo.playbackRate = -1
+        curtainVideo.play()
+      }
+    }
+  }
   
   const backgroundProgress = useSpring(0, { 
     stiffness: 80,
@@ -37,11 +53,11 @@ export default function Home() {
     if (curtainsInView && !curtainsClosed && !curtainsManuallyToggled) {
       const timer = setTimeout(() => {
         setCurtainsClosed(true)
-        curtainProgress.set(0)
+        playCurtainVideo('close')
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [curtainsInView, curtainsClosed, curtainsManuallyToggled, curtainProgress])
+  }, [curtainsInView, curtainsClosed, curtainsManuallyToggled, curtainVideo])
 
   const toggleLights = () => {
     setLightsManuallyToggled(true)
@@ -54,7 +70,7 @@ export default function Home() {
     setCurtainsManuallyToggled(true)
     const newState = !curtainsClosed
     setCurtainsClosed(newState)
-    curtainProgress.set(newState ? 0 : 1)
+    playCurtainVideo(newState ? 'close' : 'open')
   }
 
   return (
@@ -240,26 +256,32 @@ export default function Home() {
         viewport={{ once: true, amount: 0.3 }}
       >
         <div className="absolute inset-0 z-0">
-          <motion.div 
+          {/* Static background */}
+          <div 
             className="absolute inset-0"
             style={{
-              backgroundImage: `url('/Curtains-Closed-Lights-On.png')`,
+              backgroundImage: `url('/Curtains-Open-Lights-On.png')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
             }}
           />
           
-          <motion.div 
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url('/Curtains-Open-Lights-On.png')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat',
-              opacity: curtainProgress
+          {/* Video overlay for curtain animation */}
+          <video
+            ref={(el) => setCurtainVideo(el)}
+            className="absolute inset-0 w-full h-full object-cover"
+            muted
+            playsInline
+            preload="metadata"
+            style={{ 
+              opacity: curtainsClosed ? 1 : 0,
+              transition: 'opacity 0.3s ease'
             }}
-          />
+          >
+            <source src="/curtain-close.mp4" type="video/mp4" />
+            <source src="/curtain-close.webm" type="video/webm" />
+          </video>
         </div>
         
         <div className="flex flex-col items-start justify-start min-h-screen px-8 md:px-16 pt-32 relative z-10">
