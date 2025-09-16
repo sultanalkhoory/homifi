@@ -126,7 +126,7 @@ export default function Home() {
           />
         </div>
         
-        <div className="flex flex-col items-start justify-center min-h-screen px-8 md:px-16 pt-24 relative z-10">
+        <div className="flex flex-col items-start justify-start min-h-screen px-8 md:px-16 pt-32 relative z-10">
           {/* Text Content - Above iPhone */}
           <motion.div 
             initial={{ opacity: 0, y: 50 }}
@@ -235,9 +235,7 @@ export default function Home() {
           <motion.div 
             className="absolute inset-0"
             style={{
-              backgroundImage: lightsOn ? 
-                `url('/Curtains-Closed-Lights-On.png')` : 
-                `url('/Curtains-Closed-Lights-Off.png')`,
+              backgroundImage: `url('/Curtains-Closed-Lights-On.png')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat'
@@ -247,9 +245,7 @@ export default function Home() {
           <motion.div 
             className="absolute inset-0"
             style={{
-              backgroundImage: lightsOn ? 
-                `url('/Curtains-Open-Lights-On.png')` : 
-                `url('/Curtains-Open-Lights-Off.png')`,
+              backgroundImage: `url('/Curtains-Open-Lights-On.png')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               backgroundRepeat: 'no-repeat',
