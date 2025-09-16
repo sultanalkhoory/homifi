@@ -10,10 +10,10 @@ export default function Home() {
   const [curtainsClosed, setCurtainsClosed] = useState(false)
   const [lightsManuallyToggled, setLightsManuallyToggled] = useState(false)
   const [curtainsManuallyToggled, setCurtainsManuallyToggled] = useState(false)
-  const [curtainVideo, setCurtainVideo] = useState(null)
+  const [curtainVideo, setCurtainVideo] = useState<HTMLVideoElement | null>(null)
 
   // Video control for curtains
-  const playCurtainVideo = (direction) => {
+  const playCurtainVideo = (direction: 'close' | 'open') => {
     if (curtainVideo) {
       if (direction === 'close') {
         curtainVideo.currentTime = 0
