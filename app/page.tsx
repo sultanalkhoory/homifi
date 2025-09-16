@@ -161,11 +161,16 @@ export default function Home() {
                 style={{ background: 'linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)' }}
               >
                 
-                {/* Notch */}
-                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10">
-                  <div className="flex items-center justify-center h-full px-2">
-                    <div className="w-1.5 h-1.5 bg-gray-600 rounded-full mr-1.5"></div>
-                    <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
+                {/* Dynamic Island */}
+                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-32 h-7 bg-black rounded-full z-10 flex items-center justify-center">
+                  <div className="flex items-center space-x-3">
+                    {/* Front camera */}
+                    <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
+                    {/* Sensors */}
+                    <div className="flex space-x-1">
+                      <div className="w-1 h-3 bg-gray-900 rounded-full"></div>
+                      <div className="w-1 h-3 bg-gray-900 rounded-full"></div>
+                    </div>
                   </div>
                 </div>
                 
