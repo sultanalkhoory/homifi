@@ -18,12 +18,19 @@ export default function Home() {
       if (direction === 'close') {
         curtainVideo.currentTime = 0
         curtainVideo.playbackRate = 1
-        curtainVideo.play()
+        curtainVideo.play().catch(console.error)
       } else {
-        curtainVideo.currentTime = curtainVideo.duration
+        curtainVideo.currentTime = curtainVideo.duration || 0
         curtainVideo.playbackRate = -1
-        curtainVideo.play()
+        curtainVideo.play().catch(console.error)
       }
+    }
+  }
+
+  // Handle video end events
+  const handleVideoEnd = () => {
+    if (curtainVideo) {
+      curtainVideo.pause()
     }
   }
   
@@ -70,7 +77,15 @@ export default function Home() {
     setCurtainsManuallyToggled(true)
     const newState = !curtainsClosed
     setCurtainsClosed(newState)
-    playCurtainVideo(newState ? 'close' : 'open')
+    
+    console.log('Toggling curtains:', newState ? 'closing' : 'opening')
+    console.log('Video element:', curtainVideo)
+    
+    if (curtainVideo && curtainVideo.readyState >= 2) {
+      playCurtainVideo(newState ? 'close' : 'open')
+    } else {
+      console.log('Video not ready or not loaded')
+    }
   }
 
   return (
@@ -273,10 +288,12 @@ export default function Home() {
             className="absolute inset-0 w-full h-full object-cover"
             muted
             playsInline
-            preload="metadata"
+            preload="auto"
+            onEnded={handleVideoEnd}
+            onLoadedData={() => console.log('Video loaded')}
             style={{ 
-              opacity: curtainsClosed ? 1 : 0,
-              transition: 'opacity 0.3s ease'
+              opacity: 1,
+              zIndex: curtainsClosed ? 10 : 0
             }}
           >
             <source src="/curtain-close.mp4" type="video/mp4" />
