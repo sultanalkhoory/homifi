@@ -162,15 +162,12 @@ export default function Home() {
               >
                 
                 {/* Dynamic Island */}
-                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-32 h-7 bg-black rounded-full z-10 flex items-center justify-center">
-                  <div className="flex items-center space-x-3">
+                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-6 bg-black rounded-full z-10 flex items-center justify-center">
+                  <div className="flex items-center space-x-2">
                     {/* Front camera */}
-                    <div className="w-2 h-2 bg-gray-800 rounded-full"></div>
-                    {/* Sensors */}
-                    <div className="flex space-x-1">
-                      <div className="w-1 h-3 bg-gray-900 rounded-full"></div>
-                      <div className="w-1 h-3 bg-gray-900 rounded-full"></div>
-                    </div>
+                    <div className="w-1.5 h-1.5 bg-black rounded-full border border-gray-800"></div>
+                    {/* Speaker/sensors */}
+                    <div className="w-3 h-1 bg-black rounded-full"></div>
                   </div>
                 </div>
                 
@@ -211,14 +208,20 @@ export default function Home() {
                     <div className="text-white text-base font-semibold mb-3">Living Room</div>
                     <div className="grid grid-cols-2 gap-2.5">
                       <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
-                        <div className="text-base mb-1.5">💡</div>
+                        <div className={`text-base mb-1.5 ${lightsOn ? 'drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]' : ''}`}>💡</div>
                         <div className="text-xs font-medium text-white">Cove Light</div>
                         <div className="text-xs text-white/70">{lightsOn ? "On" : "Off"}</div>
                       </div>
                       
                       <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
-                        <div className="text-base mb-1.5">💡</div>
+                        <div className={`text-base mb-1.5 ${lightsOn ? 'drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]' : ''}`}>💡</div>
                         <div className="text-xs font-medium text-white">Spotlight</div>
+                        <div className="text-xs text-white/70">{lightsOn ? "On" : "Off"}</div>
+                      </div>
+                      
+                      <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
+                        <div className={`text-base mb-1.5 ${lightsOn ? 'drop-shadow-[0_0_8px_rgba(255,215,0,0.6)]' : ''}`}>🪔</div>
+                        <div className="text-xs font-medium text-white">Lamp Light</div>
                         <div className="text-xs text-white/70">{lightsOn ? "On" : "Off"}</div>
                       </div>
                     </div>
@@ -294,11 +297,13 @@ export default function Home() {
                 style={{ background: 'linear-gradient(135deg, #1f2937 0%, #374151 50%, #4b5563 100%)' }}
               >
                 
-                {/* Notch */}
-                <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-24 h-6 bg-black rounded-full z-10">
-                  <div className="flex items-center justify-center h-full px-2">
-                    <div className="w-1.5 h-1.5 bg-gray-600 rounded-full mr-1.5"></div>
-                    <div className="w-1 h-1 bg-gray-500 rounded-full"></div>
+                {/* Dynamic Island */}
+                <div className="absolute top-2 left-1/2 transform -translate-x-1/2 w-28 h-6 bg-black rounded-full z-10 flex items-center justify-center">
+                  <div className="flex items-center space-x-2">
+                    {/* Front camera */}
+                    <div className="w-1.5 h-1.5 bg-black rounded-full border border-gray-800"></div>
+                    {/* Speaker/sensors */}
+                    <div className="w-3 h-1 bg-black rounded-full"></div>
                   </div>
                 </div>
                 
