@@ -11,27 +11,26 @@ export default function Home() {
   const [lightsManuallyToggled, setLightsManuallyToggled] = useState(false)
   const [curtainsManuallyToggled, setCurtainsManuallyToggled] = useState(false)
   const [curtainVideo, setCurtainVideo] = useState<HTMLVideoElement | null>(null)
+  const [curtainAnimating, setCurtainAnimating] = useState(false)
 
   // Video control for curtains
   const playCurtainVideo = (direction: 'close' | 'open') => {
-    if (curtainVideo) {
-      if (direction === 'close') {
-        curtainVideo.currentTime = 0
-        curtainVideo.playbackRate = 1
-        curtainVideo.play().catch(console.error)
-      } else {
-        curtainVideo.currentTime = curtainVideo.duration || 0
-        curtainVideo.playbackRate = -1
-        curtainVideo.play().catch(console.error)
-      }
+    if (curtainVideo && !curtainAnimating) {
+      setCurtainAnimating(true)
+      
+      // Switch video source based on direction
+      const videoSrc = direction === 'close' ? '/curtain-close.mp4' : '/curtain-open.mp4'
+      curtainVideo.src = videoSrc
+      curtainVideo.currentTime = 0
+      curtainVideo.playbackRate = 1
+      curtainVideo.play().catch(console.error)
     }
   }
 
   // Handle video end events
   const handleVideoEnd = () => {
-    if (curtainVideo) {
-      curtainVideo.pause()
-    }
+    setCurtainAnimating(false)
+    console.log('Video animation completed')
   }
   
   const backgroundProgress = useSpring(0, { 
@@ -57,14 +56,14 @@ export default function Home() {
   }, [dashboardInView, lightsOn, lightsManuallyToggled, backgroundProgress])
 
   useEffect(() => {
-    if (curtainsInView && !curtainsClosed && !curtainsManuallyToggled) {
+    if (curtainsInView && !curtainsClosed && !curtainsManuallyToggled && !curtainAnimating) {
       const timer = setTimeout(() => {
         setCurtainsClosed(true)
         playCurtainVideo('close')
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [curtainsInView, curtainsClosed, curtainsManuallyToggled, curtainVideo])
+  }, [curtainsInView, curtainsClosed, curtainsManuallyToggled, curtainVideo, curtainAnimating])
 
   const toggleLights = () => {
     setLightsManuallyToggled(true)
@@ -74,18 +73,14 @@ export default function Home() {
   }
 
   const toggleCurtains = () => {
+    if (curtainAnimating) return // Prevent clicks during animation
+    
     setCurtainsManuallyToggled(true)
     const newState = !curtainsClosed
     setCurtainsClosed(newState)
     
     console.log('Toggling curtains:', newState ? 'closing' : 'opening')
-    console.log('Video element:', curtainVideo)
-    
-    if (curtainVideo && curtainVideo.readyState >= 2) {
-      playCurtainVideo(newState ? 'close' : 'open')
-    } else {
-      console.log('Video not ready or not loaded')
-    }
+    playCurtainVideo(newState ? 'close' : 'open')
   }
 
   return (
@@ -271,18 +266,7 @@ export default function Home() {
         viewport={{ once: true, amount: 0.3 }}
       >
         <div className="absolute inset-0 z-0">
-          {/* Static background */}
-          <div 
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url('/Curtains-Open-Lights-On.png')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              backgroundRepeat: 'no-repeat'
-            }}
-          />
-          
-          {/* Video overlay for curtain animation */}
+          {/* Video for curtain animation */}
           <video
             ref={(el) => setCurtainVideo(el)}
             className="absolute inset-0 w-full h-full object-cover"
@@ -292,12 +276,10 @@ export default function Home() {
             onEnded={handleVideoEnd}
             onLoadedData={() => console.log('Video loaded')}
             style={{ 
-              opacity: 1,
-              zIndex: curtainsClosed ? 10 : 0
+              opacity: 1
             }}
           >
-            <source src="/curtain-close.mp4" type="video/mp4" />
-            <source src="/curtain-close.webm" type="video/webm" />
+            <source src="/curtain-open.mp4" type="video/mp4" />
           </video>
         </div>
         
@@ -358,10 +340,10 @@ export default function Home() {
                   {/* Main Control */}
                   <div className="flex space-x-1.5 mb-5">
                     <motion.div 
-                      className="rounded-full px-2.5 py-1 border cursor-pointer"
+                      className={`rounded-full px-2.5 py-1 border cursor-pointer ${curtainAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
                       onClick={toggleCurtains}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={curtainAnimating ? {} : { scale: 1.05 }}
+                      whileTap={curtainAnimating ? {} : { scale: 0.95 }}
                       animate={{
                         backgroundColor: curtainsClosed ? "rgba(255, 255, 255, 0.15)" : "rgba(79, 70, 229, 0.2)",
                         borderColor: curtainsClosed ? "rgba(255, 255, 255, 0.3)" : "rgba(129, 140, 248, 0.3)"
