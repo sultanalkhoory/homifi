@@ -10,28 +10,6 @@ export default function Home() {
   const [curtainsClosed, setCurtainsClosed] = useState(false)
   const [lightsManuallyToggled, setLightsManuallyToggled] = useState(false)
   const [curtainsManuallyToggled, setCurtainsManuallyToggled] = useState(false)
-  const [curtainVideo, setCurtainVideo] = useState<HTMLVideoElement | null>(null)
-  const [curtainAnimating, setCurtainAnimating] = useState(false)
-
-  // Video control for curtains
-  const playCurtainVideo = (direction: 'close' | 'open') => {
-    if (curtainVideo && !curtainAnimating) {
-      setCurtainAnimating(true)
-      
-      // Switch video source based on direction
-      const videoSrc = direction === 'close' ? '/curtain-close.mp4' : '/curtain-open.mp4'
-      curtainVideo.src = videoSrc
-      curtainVideo.currentTime = 0
-      curtainVideo.playbackRate = 1
-      curtainVideo.play().catch(console.error)
-    }
-  }
-
-  // Handle video end events
-  const handleVideoEnd = () => {
-    setCurtainAnimating(false)
-    console.log('Video animation completed')
-  }
   
   const backgroundProgress = useSpring(0, { 
     stiffness: 80,
@@ -56,14 +34,14 @@ export default function Home() {
   }, [dashboardInView, lightsOn, lightsManuallyToggled, backgroundProgress])
 
   useEffect(() => {
-    if (curtainsInView && !curtainsClosed && !curtainsManuallyToggled && !curtainAnimating) {
+    if (curtainsInView && !curtainsClosed && !curtainsManuallyToggled) {
       const timer = setTimeout(() => {
         setCurtainsClosed(true)
-        playCurtainVideo('close')
+        curtainProgress.set(0)
       }, 1000)
       return () => clearTimeout(timer)
     }
-  }, [curtainsInView, curtainsClosed, curtainsManuallyToggled, curtainVideo, curtainAnimating])
+  }, [curtainsInView, curtainsClosed, curtainsManuallyToggled, curtainProgress])
 
   const toggleLights = () => {
     setLightsManuallyToggled(true)
@@ -73,14 +51,10 @@ export default function Home() {
   }
 
   const toggleCurtains = () => {
-    if (curtainAnimating) return // Prevent clicks during animation
-    
     setCurtainsManuallyToggled(true)
     const newState = !curtainsClosed
     setCurtainsClosed(newState)
-    
-    console.log('Toggling curtains:', newState ? 'closing' : 'opening')
-    playCurtainVideo(newState ? 'close' : 'open')
+    curtainProgress.set(newState ? 0 : 1)
   }
 
   return (
@@ -266,21 +240,26 @@ export default function Home() {
         viewport={{ once: true, amount: 0.3 }}
       >
         <div className="absolute inset-0 z-0">
-          {/* Video for curtain animation */}
-          <video
-            ref={(el) => setCurtainVideo(el)}
-            className="absolute inset-0 w-full h-full object-cover"
-            muted
-            playsInline
-            preload="auto"
-            onEnded={handleVideoEnd}
-            onLoadedData={() => console.log('Video loaded')}
-            style={{ 
-              opacity: 1
+          <motion.div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url('/Curtains-Closed-Lights-On.png')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
             }}
-          >
-            <source src="/curtain-open.mp4" type="video/mp4" />
-          </video>
+          />
+          
+          <motion.div 
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url('/Curtains-Open-Lights-On.png')`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+              opacity: curtainProgress
+            }}
+          />
         </div>
         
         <div className="flex flex-col items-start justify-start min-h-screen px-8 md:px-16 pt-32 relative z-10">
@@ -340,10 +319,10 @@ export default function Home() {
                   {/* Main Control */}
                   <div className="flex space-x-1.5 mb-5">
                     <motion.div 
-                      className={`rounded-full px-2.5 py-1 border cursor-pointer ${curtainAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      className="rounded-full px-2.5 py-1 border cursor-pointer"
                       onClick={toggleCurtains}
-                      whileHover={curtainAnimating ? {} : { scale: 1.05 }}
-                      whileTap={curtainAnimating ? {} : { scale: 0.95 }}
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                       animate={{
                         backgroundColor: curtainsClosed ? "rgba(255, 255, 255, 0.15)" : "rgba(79, 70, 229, 0.2)",
                         borderColor: curtainsClosed ? "rgba(255, 255, 255, 0.3)" : "rgba(129, 140, 248, 0.3)"
