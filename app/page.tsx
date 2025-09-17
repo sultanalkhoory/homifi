@@ -64,6 +64,13 @@ export default function Home() {
     }
   }, [climateInView, climateManuallyToggled])
 
+  const toggleCurtains = () => {
+    setCurtainsManuallyToggled(true)
+    const newState = !curtainsClosed
+    setCurtainsClosed(newState)
+    curtainProgress.set(newState ? 0 : 1)
+  }
+
   return (
     <div className="text-white">
       {/* Hero Section */}
