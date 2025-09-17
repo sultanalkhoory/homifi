@@ -10,8 +10,8 @@ export default function Home() {
   const [curtainsClosed, setCurtainsClosed] = useState(false)
   const [lightsManuallyToggled, setLightsManuallyToggled] = useState(false)
   const [curtainsManuallyToggled, setCurtainsManuallyToggled] = useState(false)
-  const [temperature, setTemperature] = useState(22)
-  const [climateMode, setClimateMode] = useState<'cool' | 'warm'>('cool')
+  const [temperature, setTemperature] = useState(24)
+  const [coolingOn, setCoolingOn] = useState(false)
   const [climateInView, setClimateInView] = useState(false)
   const [climateManuallyToggled, setClimateManuallyToggled] = useState(false)
   
@@ -50,8 +50,8 @@ export default function Home() {
   useEffect(() => {
     if (climateInView && !climateManuallyToggled) {
       const timer = setTimeout(() => {
-        setClimateMode('warm')
-        setTemperature(24)
+        setCoolingOn(true)
+        setTemperature(22)
       }, 1200)
       return () => clearTimeout(timer)
     }
@@ -73,9 +73,9 @@ export default function Home() {
 
   const toggleClimate = () => {
     setClimateManuallyToggled(true)
-    const newMode = climateMode === 'cool' ? 'warm' : 'cool'
-    setClimateMode(newMode)
-    setTemperature(newMode === 'cool' ? 22 : 24)
+    const newState = !coolingOn
+    setCoolingOn(newState)
+    setTemperature(newState ? 22 : 24)
   }
 
   return (
@@ -397,9 +397,9 @@ export default function Home() {
           <motion.div 
             className="absolute inset-0"
             animate={{
-              background: climateMode === 'cool' 
+              background: coolingOn 
                 ? 'rgba(59, 130, 246, 0.15)' 
-                : 'rgba(251, 146, 60, 0.15)'
+                : 'rgba(0, 0, 0, 0)'
             }}
             transition={{ duration: 1.2 }}
           />
@@ -459,16 +459,16 @@ export default function Home() {
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
                       animate={{
-                        backgroundColor: climateMode === 'warm' ? "rgba(251, 146, 60, 0.2)" : "rgba(59, 130, 246, 0.2)",
-                        borderColor: climateMode === 'warm' ? "rgba(251, 146, 60, 0.3)" : "rgba(59, 130, 246, 0.3)"
+                        backgroundColor: coolingOn ? "rgba(59, 130, 246, 0.2)" : "rgba(255, 255, 255, 0.1)",
+                        borderColor: coolingOn ? "rgba(59, 130, 246, 0.3)" : "rgba(255, 255, 255, 0.2)"
                       }}
                       transition={{ duration: 0.6 }}
                     >
                       <div className="flex items-center">
-                        <div className="text-xs mr-1">{climateMode === 'cool' ? '❄️' : '🔥'}</div>
+                        <div className="text-xs mr-1">❄️</div>
                         <div>
                           <div className="text-xs font-medium text-white">{temperature}°C</div>
-                          <div className="text-xs text-white/70">{climateMode === 'cool' ? 'Cooling' : 'Heating'}</div>
+                          <div className="text-xs text-white/70">{coolingOn ? 'Cooling' : 'Off'}</div>
                         </div>
                       </div>
                     </motion.div>
@@ -480,13 +480,7 @@ export default function Home() {
                       <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
                         <div className="text-base mb-1.5">❄️</div>
                         <div className="text-xs font-medium text-white">Air Conditioner</div>
-                        <div className="text-xs text-white/70">{climateMode === 'cool' ? 'Running' : 'Off'}</div>
-                      </div>
-                      
-                      <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
-                        <div className="text-base mb-1.5">🔥</div>
-                        <div className="text-xs font-medium text-white">Heater</div>
-                        <div className="text-xs text-white/70">{climateMode === 'warm' ? 'Running' : 'Off'}</div>
+                        <div className="text-xs text-white/70">{coolingOn ? 'Running' : 'Off'}</div>
                       </div>
                       
                       <div className="rounded-xl p-2.5 border border-white/20 bg-white/10 backdrop-blur-sm">
